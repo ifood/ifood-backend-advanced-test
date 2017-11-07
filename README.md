@@ -14,24 +14,39 @@ Both interfaces call the service *RecommendationService* that is responsible to 
 - Obtain the tracks name based on the category.
 
 ### OpenWeatherMap
-To extract he temperature from *OpenWeatherMap*, it was used the *owm-japis*.
+
+To extract the temperature from *OpenWeatherMap*, it was used the *owm-japis*.
 This library is recommended by the *OpenWeatherMap* for Java applications, it allows to handle the requests to *OpenWeatherMap* without dealing REST request itself.
 The library provides the same flexibility as the REST call, however, it is easy to use and maintained.
 
 ### Spotify
+
 Spotify provides few APIs to handle the request.
 For this project, *spotify-web-api-java* was used, it provides a powerful way of handle the Spotify features.
 The main reason of use it is providing a unify and easy way of access different Spotify feature for further implementations.
 
-To access Spotify, it is needed a authentication procedure that results in a *access token*.
+To access Spotify, it is needed an authentication procedure that results in a *access token*.
 The *access token* has a valid period, that way, the application is prepared to validate the *access token* by reconnecting.
 
 ### Business Rules
+
 To keep the business rules separated from other concerns, the package *businessrules* was created.
 It has only one rule that categorizes the wanted track type by the received temperature.
 
 ## Requirement's Business Rules
+
 * If temperature (Celcius) is above 30 degrees, suggest tracks for party
-* In case temperature is above 15 and below 30 degrees, suggest pop music tracks
+* In case of temperature is above 15 and below 30 degrees, suggest pop music tracks
 * If it's a bit chilly (between 10 and 14 degrees), suggest rock music tracks
 * Otherwise, if it's freezing outside, suggests classical music tracks
+
+### REST Interface
+
+* /recommendation/city/{cityname} : get tracks for the city based on its name.
+* /recommendation/location?latitude=X&longitude=Y : get tracks for location X, Y.
+
+### Error scenarios
+
+* List name not found - empty list of tracks.
+* Spotify and/or OpenWeatherMap not available - error Service Unavailable.
+* Parsing latitude and/or longitude - error Bad Request.
