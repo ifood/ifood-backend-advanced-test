@@ -1,0 +1,96 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.9.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+		maven { url "https://plugins.gradle.org/m2/" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: "jacoco"
+apply plugin: 'com.palantir.docker'
+
+group = 'com.ifood.backend'
+version = '0.0.2-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+ext {
+	springCloudVersion = 'Dalston.RELEASE'
+}
+
+configurations.all {
+	exclude group: "commons-logging", module: "commons-logging"
+}
+
+docker {
+	name "${project.group}/${jar.baseName}"
+	files jar.archivePath
+	buildArgs(['JAR_FILE': "${jar.archiveName}"])
+}
+
+dependencies {
+
+	//Spring dependencies
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-cache')
+	compile('org.springframework.boot:spring-boot-starter-hateoas')
+	compile('org.springframework.boot:spring-boot-starter-jersey')
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-validation')
+	compile("io.springfox:springfox-swagger2:2.7.0")
+	compile("io.springfox:springfox-swagger-ui:2.7.0")
+
+	//Feign dependencies
+	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-feign'
+	compile 'io.github.openfeign:feign-gson:9.3.1'
+	compile 'io.github.openfeign.form:feign-form:3.0.3'
+	compile 'io.github.openfeign.form:feign-form-spring:3.0.3'
+	compile group: 'com.netflix.feign', name: 'feign-jackson', version: '8.18.0'
+
+	//Logging dependencines
+	compile 'org.slf4j:jcl-over-slf4j:1.7.12'
+
+	//  Powermock
+	compile 'org.powermock:powermock-module-junit4:1.6.6'
+	compile 'org.powermock:powermock-api-mockito:1.6.6'
+
+	//Other dependencies
+	compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.9.3'
+
+	runtime('org.springframework.boot:spring-boot-devtools')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
+	testCompile('org.springframework.security:spring-security-test')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+test {
+	dependsOn 'cleanTest'
+	jacoco {
+		append = false
+		destinationFile = file("$buildDir/test-results/test.exec")
+	}
+}
