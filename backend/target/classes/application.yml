@@ -1,5 +1,0 @@
-
-# Configuração por ambiente
-spring:
-  profiles:
-    active: prod

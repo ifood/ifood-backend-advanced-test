@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: tech.paiter.itemper.MedtestApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.483 sec - in tech.paiter.itemper.MedtestApplicationTests
