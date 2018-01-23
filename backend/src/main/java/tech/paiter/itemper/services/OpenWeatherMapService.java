@@ -5,6 +5,7 @@ import net.aksingh.owmjapis.model.param.Main;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.paiter.itemper.apis.OpenWeatherMapUtil;
+import tech.paiter.itemper.models.Coordenadas;
 
 @Service
 public class OpenWeatherMapService {
@@ -17,8 +18,14 @@ public class OpenWeatherMapService {
         return cidade.getTemp();
     }
 
-    public void getLatLong(String lat, String log) {
+    public Double getLatLong(String lat, String log) throws APIException {
+        Main cidade = openWeatherMapUtil.getCidadeByLatLog(lat, log);
+        return cidade.getTemp();
+    }
 
+    public Double getLatLong(Coordenadas coord) throws APIException {
+        Main cidade = openWeatherMapUtil.getCidadeByCoordenadas(coord);
+        return cidade.getTemp();
     }
 
 }

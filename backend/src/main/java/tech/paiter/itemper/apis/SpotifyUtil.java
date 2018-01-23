@@ -68,8 +68,8 @@ public class SpotifyUtil {
             };
 
             String responseBody = httpClient.execute(httpPost, responseHandler);
-            // System.out.println("----------------------------------------");
-            // System.out.println(responseBody);
+//             System.out.println("----------------------------------------");
+//             System.out.println(responseBody);
             return gson.fromJson(responseBody, TokenSpotify.class);
 
         } catch (IOException e) {

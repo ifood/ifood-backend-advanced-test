@@ -7,6 +7,7 @@ import net.aksingh.owmjapis.model.CurrentWeather;
 import net.aksingh.owmjapis.model.param.Main;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import tech.paiter.itemper.models.Coordenadas;
 
 @Component
 public class OpenWeatherMapUtil {
@@ -22,4 +23,17 @@ public class OpenWeatherMapUtil {
     }
 
 
+    public Main getCidadeByLatLog(String lat, String log) throws APIException {
+        OWM owm = new OWM(apiKey);
+        owm.setUnit(OWM.Unit.METRIC);
+        CurrentWeather cwd = owm.currentWeatherByCoords(Double.parseDouble(lat), Double.parseDouble(log));
+        return cwd.getMainData();
+    }
+
+    public Main getCidadeByCoordenadas(Coordenadas coord) throws APIException {
+        OWM owm = new OWM(apiKey);
+        owm.setUnit(OWM.Unit.METRIC);
+        CurrentWeather cwd = owm.currentWeatherByCoords(coord.getLatitude(), coord.getLongitude());
+        return cwd.getMainData();
+    }
 }

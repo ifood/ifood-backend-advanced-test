@@ -3,10 +3,11 @@ package tech.paiter.itemper.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.paiter.itemper.apis.SpotifyApis;
-import tech.paiter.itemper.apis.SpotifyUtil;
-import tech.paiter.itemper.services.utils.categorias.*;
+import tech.paiter.itemper.apis.dto.Musica;
+import tech.paiter.itemper.services.utils.chains.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class SpotifyService {
@@ -14,7 +15,11 @@ public class SpotifyService {
     @Autowired
     SpotifyApis spotifyApis;
 
-    public void getPlaylistByTemp(Double temperatura) throws IOException {
+    public List<Musica> getPlaylistByTemp(Double temperatura) throws IOException {
+        return spotifyApis.getPlaylistByCategoria(encontraCategoria(temperatura));
+    }
+
+    private String encontraCategoria(Double temperatura) throws IOException {
 
         ICategoria party = new PartyCategoria();
         ICategoria rock = new RockCategoria();
@@ -25,7 +30,6 @@ public class SpotifyService {
         rock.setNextChain(pop);
         pop.setNextChain(classica);
 
-
-        spotifyApis.getPlaylistByCategoria(party.dispense(temperatura));
+        return party.dispense(temperatura);
     }
 }

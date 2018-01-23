@@ -1,4 +1,4 @@
-package tech.paiter.itemper.services.utils.categorias;
+package tech.paiter.itemper.services.utils.chains;
 
 public class ClassicaCategoria implements ICategoria {
 
