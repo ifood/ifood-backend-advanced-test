@@ -2,4 +2,4 @@
 # Configuração por ambiente
 spring:
   profiles:
-    active: dev
+    active: prod

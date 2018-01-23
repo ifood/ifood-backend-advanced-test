@@ -119,6 +119,38 @@
 			</activation>
 		</profile>
 
+		<profile>
+			<id>prod</id>
+			<properties>
+				<activatedProperties>prod</activatedProperties>
+				<project.packaging>jar</project.packaging>
+				<docker.image.prefix>springio</docker.image.prefix>
+			</properties>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.spotify</groupId>
+						<artifactId>docker-maven-plugin</artifactId>
+						<configuration>
+							<imageName>${docker.image.prefix}</imageName>
+							<baseImage>java:8</baseImage>
+							<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+							<!-- copy the service's jar file from target into the root directory of the image -->
+							<resources>
+								<resource>
+									<targetPath>/</targetPath>
+									<directory>${project.build.directory}</directory>
+									<include>${project.build.finalName}.jar</include>
+								</resource>
+							</resources>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+		</profile>
+
 	</profiles>
 
 
