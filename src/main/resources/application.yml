@@ -1,3 +1,7 @@
 logging:
     level:
         ROOT: INFO
+
+openWeather:
+    key: "d789f4c1287eddab12a774a816e6e8d7"
+    endpoint: "http://api.openweathermap.org/data/2.5/weather"
