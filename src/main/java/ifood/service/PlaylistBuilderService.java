@@ -4,6 +4,7 @@ import ifood.component.OpenWeather;
 import ifood.component.Spotify;
 import ifood.dto.OpenWeatherResponse;
 import ifood.dto.SpotifyPlaylistResponse;
+import ifood.dto.SpotifyTracksResponse;
 import ifood.dto.WeatherResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,9 @@ public class PlaylistBuilderService {
 
     public SpotifyPlaylistResponse getPlaylist(final String category, final String country, final String token) {
         return spotify.getPlaylist(category, country, token);
+    }
+
+    public SpotifyTracksResponse getTracks(final String playlistId, final String token) {
+        return spotify.getTracks(playlistId, token);
     }
 }
