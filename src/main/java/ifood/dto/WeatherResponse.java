@@ -10,4 +10,6 @@ public class WeatherResponse {
     private final String cityname;
 
     private final Double temp;
+
+    private final String country;
 }

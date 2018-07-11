@@ -5,7 +5,6 @@ import ifood.dto.OpenWeatherResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
@@ -15,15 +14,14 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @Component
-//@Profile({"production", "development"})
 @Slf4j
 public class OpenWeatherImpl implements OpenWeather {
 
-    private String appKey;
+    private final String appKey;
 
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
-    private UriComponentsBuilder uriBuilder;
+    private final UriComponentsBuilder uriBuilder;
 
     @Autowired
     public OpenWeatherImpl(@Value("${openWeather.endpoint}") final String openWeatherEndpoint,
@@ -52,7 +50,7 @@ public class OpenWeatherImpl implements OpenWeather {
         } catch (Exception ex) {
             throw ex;
         }
-        return new OpenWeatherResponse("", 0);
+        return new OpenWeatherResponse("", 0, "");
     }
 
     @Override
@@ -74,6 +72,6 @@ public class OpenWeatherImpl implements OpenWeather {
         } catch (Exception ex) {
             throw ex;
         }
-        return new OpenWeatherResponse("", 0);
+        return new OpenWeatherResponse("", 0, "");
     }
 }

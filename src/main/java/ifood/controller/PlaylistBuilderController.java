@@ -1,5 +1,6 @@
 package ifood.controller;
 
+import ifood.dto.SpotifyPlaylistResponse;
 import ifood.dto.WeatherResponse;
 import ifood.service.PlaylistBuilderService;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +23,11 @@ public class PlaylistBuilderController {
         } else {
             return service.getTemp(lat, lon);
         }
+    }
+
+    @GetMapping(value = "/playlist", produces = "application/json")
+    public SpotifyPlaylistResponse getPlaylist(final String category, final String country, final String token) {
+
+        return service.getPlaylist(category, country, token);
     }
 }

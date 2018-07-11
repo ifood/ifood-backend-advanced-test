@@ -5,3 +5,7 @@ logging:
 openWeather:
     key: "d789f4c1287eddab12a774a816e6e8d7"
     endpoint: "http://api.openweathermap.org/data/2.5/weather"
+
+spotify:
+    playlistEndpoint: "https://api.spotify.com/v1/browse/categories/%s/playlists"
+    tracksEndpoint:

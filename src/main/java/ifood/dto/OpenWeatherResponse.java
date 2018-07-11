@@ -14,8 +14,15 @@ public class OpenWeatherResponse {
 
     private double mainTemp;
 
+    private String country;
+
     @JsonProperty("main")
-    private void nestedTemp(Map<String, Double> main) {
+    private void getTemp(Map<String, Double> main) {
         this.mainTemp = main.get("temp");
+    }
+
+    @JsonProperty("sys")
+    private void getCountry(Map<String, String> sys) {
+        this.country = sys.get("country");
     }
 }
