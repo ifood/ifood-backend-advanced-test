@@ -1,8 +1,8 @@
 package ifood.component;
 
-import ifood.dto.SpotifyPlaylistResponse;
-import ifood.dto.SpotifyTracksResponse;
-import ifood.dto.TrackCategory;
+import ifood.model.SpotifyPlaylistResponse;
+import ifood.model.SpotifyTracksResponse;
+import ifood.model.TrackCategory;
 
 public interface Spotify {
 

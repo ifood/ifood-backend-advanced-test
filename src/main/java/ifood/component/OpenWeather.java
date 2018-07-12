@@ -1,6 +1,6 @@
 package ifood.component;
 
-import ifood.dto.OpenWeatherResponse;
+import ifood.model.OpenWeatherResponse;
 
 public interface OpenWeather {
 

@@ -1,9 +1,9 @@
 package ifood.component.impl;
 
 import ifood.component.Spotify;
-import ifood.dto.SpotifyPlaylistResponse;
-import ifood.dto.SpotifyTracksResponse;
-import ifood.dto.TrackCategory;
+import ifood.model.SpotifyPlaylistResponse;
+import ifood.model.SpotifyTracksResponse;
+import ifood.model.TrackCategory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package ifood.dto;
+package ifood.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

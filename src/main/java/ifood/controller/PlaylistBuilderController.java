@@ -1,6 +1,6 @@
 package ifood.controller;
 
-import ifood.dto.*;
+import ifood.model.*;
 import ifood.service.PlaylistBuilderService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;

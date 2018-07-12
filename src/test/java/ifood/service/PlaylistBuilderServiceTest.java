@@ -2,8 +2,8 @@ package ifood.service;
 
 import ifood.component.OpenWeather;
 import ifood.config.BaseTest;
-import ifood.dto.OpenWeatherResponse;
-import ifood.dto.WeatherResponse;
+import ifood.model.OpenWeatherResponse;
+import ifood.model.WeatherResponse;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

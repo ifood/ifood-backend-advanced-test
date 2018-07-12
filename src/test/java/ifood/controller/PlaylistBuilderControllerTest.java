@@ -2,7 +2,7 @@ package ifood.controller;
 
 import ifood.component.OpenWeather;
 import ifood.config.MvcTest;
-import ifood.dto.OpenWeatherResponse;
+import ifood.model.OpenWeatherResponse;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;

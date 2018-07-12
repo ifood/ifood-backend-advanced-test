@@ -1,7 +1,7 @@
 package ifood.component.impl;
 
 import ifood.component.OpenWeather;
-import ifood.dto.OpenWeatherResponse;
+import ifood.model.OpenWeatherResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

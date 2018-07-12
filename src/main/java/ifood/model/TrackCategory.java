@@ -1,4 +1,4 @@
-package ifood.dto;
+package ifood.model;
 
 public enum TrackCategory {
     PARTY,
