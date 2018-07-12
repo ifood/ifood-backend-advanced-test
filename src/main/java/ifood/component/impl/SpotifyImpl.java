@@ -3,7 +3,7 @@ package ifood.component.impl;
 import ifood.component.Spotify;
 import ifood.model.SpotifyPlaylistResponse;
 import ifood.model.SpotifyTracksResponse;
-import ifood.model.TrackCategory;
+import ifood.model.TrackCategoryEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +42,11 @@ public class SpotifyImpl implements Spotify {
     }
 
     @Override
-    public SpotifyPlaylistResponse getPlaylist(final TrackCategory trackCategory,
+    public SpotifyPlaylistResponse getPlaylist(final TrackCategoryEnum trackCategoryEnum,
                                                final String country,
                                                final String token) {
         try {
-            final String playlistEndpoint = String.format(playlistBaseEndpoint, trackCategory.toString());
+            final String playlistEndpoint = String.format(playlistBaseEndpoint, trackCategoryEnum.toString());
             final UriComponentsBuilder playlistUriBuilder = UriComponentsBuilder.fromUriString(playlistEndpoint);
 
             if (StringUtils.isNotBlank(country)) {

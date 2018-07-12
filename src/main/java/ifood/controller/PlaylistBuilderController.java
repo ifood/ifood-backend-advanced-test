@@ -3,7 +3,6 @@ package ifood.controller;
 import ifood.model.*;
 import ifood.service.PlaylistBuilderService;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,16 +17,11 @@ public class PlaylistBuilderController {
 
     @GetMapping(value = "/weather", produces = "application/json")
     public WeatherResponse getWeather(final String cityname, final Double lat, final Double lon) {
-
-        if (StringUtils.isNotBlank(cityname)) {
-            return service.getTemp(cityname);
-        } else {
-            return service.getTemp(lat, lon);
-        }
+        return service.getWeather(cityname, lat, lon);
     }
 
     @GetMapping(value = "/playlist", produces = "application/json")
-    public SpotifyPlaylistResponse getPlaylist(final TrackCategory category, final String country, final String token) {
+    public SpotifyPlaylistResponse getPlaylist(final TrackCategoryEnum category, final String country, final String token) {
         return service.getPlaylist(category, country, token);
     }
 

@@ -2,7 +2,9 @@ package ifood.component.impl;
 
 import ifood.component.OpenWeather;
 import ifood.model.OpenWeatherResponse;
+import ifood.validator.CityValidator;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -32,47 +34,26 @@ public class OpenWeatherImpl implements OpenWeather {
         this.openWeatherBaseEndpoint = openWeatherEndpoint;
     }
 
-    @Override
-    public OpenWeatherResponse getCityTemp(final String cityname) {
-        try {
-            final UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(openWeatherBaseEndpoint);
-            URI uri = uriBuilder
-                    .queryParam("q", cityname)
-                    .queryParam("appid", appKey)
-                    .queryParam("units", "metric")
-                    .build().toUri();
+    private URI getWeatherUri(final String cityname, final Double lat, final Double lon) {
+        CityValidator.validate(cityname, lat, lon);
 
-            log.info(uri.toString());
-            return restTemplate.getForObject(uri, OpenWeatherResponse.class);
-        } catch (HttpClientErrorException hcee) {
-            if (hcee.getStatusCode() != HttpStatus.NOT_FOUND) {
-                throw hcee;
-            }
-        } catch (Exception ex) {
-            throw ex;
-        }
-        return new OpenWeatherResponse("", 0, "");
+        final UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(openWeatherBaseEndpoint);
+        uriBuilder.queryParam("appid", appKey).queryParam("units", "metric");
+
+        return StringUtils.isBlank(cityname)
+            ? uriBuilder.queryParam("lat", lat).queryParam("lon", lon).build().toUri()
+            : uriBuilder.queryParam("q", cityname).build().toUri();
     }
 
     @Override
-    public OpenWeatherResponse getCityTemp(final Double lat, final Double lon) {
+    public OpenWeatherResponse getCityTemp(final String cityname, final Double lat, final Double lon) {
         try {
-            final UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(openWeatherBaseEndpoint);
-            URI uri = uriBuilder
-                    .queryParam("lat", lat)
-                    .queryParam("lon", lon)
-                    .queryParam("appid", appKey)
-                    .queryParam("units", "metric")
-                    .build().toUri();
-
-            log.info(uri.toString());
-            return restTemplate.getForObject(uri, OpenWeatherResponse.class);
+            return restTemplate.getForObject(getWeatherUri(cityname, lat, lon), OpenWeatherResponse.class);
         } catch (HttpClientErrorException hcee) {
             if (hcee.getStatusCode() != HttpStatus.NOT_FOUND) {
+                log.error(hcee.getMessage(), hcee);
                 throw hcee;
             }
-        } catch (Exception ex) {
-            throw ex;
         }
         return new OpenWeatherResponse("", 0, "");
     }

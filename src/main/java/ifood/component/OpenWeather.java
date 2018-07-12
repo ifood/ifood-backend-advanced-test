@@ -4,7 +4,5 @@ import ifood.model.OpenWeatherResponse;
 
 public interface OpenWeather {
 
-    OpenWeatherResponse getCityTemp(final String cityname);
-
-    OpenWeatherResponse getCityTemp(final Double lat, final Double lon);
+    OpenWeatherResponse getCityTemp(final String cityname, final Double lat, final Double lon);
 }

@@ -1,6 +1,6 @@
 package ifood.model;
 
-public enum TrackCategory {
+public enum TrackCategoryEnum {
     PARTY,
     POP,
     ROCK,
