@@ -21,13 +21,13 @@ public class PlaylistBuilderServiceTest extends BaseTest {
 
     @Test
     public void successCitynameTest() {
-        when(openWeather.getCityTemp("Campinas"))
+        when(openWeather.getCityTemp("Campinas", null, null))
                 .thenReturn(new OpenWeatherResponse("Campinas", 25.0, "BR"));
 
         final double expectedTemp = 25;
         final String expectedCity = "Campinas";
 
-        final WeatherResponse actual = service.getTemp("Campinas");
+        final WeatherResponse actual = service.getWeather("Campinas", null, null);
 
         Assert.assertEquals(expectedTemp, actual.getTemp(), 0);
         Assert.assertEquals(expectedCity, actual.getCityname());
@@ -35,13 +35,13 @@ public class PlaylistBuilderServiceTest extends BaseTest {
 
     @Test
     public void successGeoTest() {
-        when(openWeather.getCityTemp(10.0, 20.0))
+        when(openWeather.getCityTemp(null, 10.0, 20.0))
                 .thenReturn(new OpenWeatherResponse("Sorocaba", 15.0, "BR"));
 
         final double expectedTemp = 15;
         final String expectedCity = "Sorocaba";
 
-        final WeatherResponse actual = service.getTemp(10.0, 20.0);
+        final WeatherResponse actual = service.getWeather(null, 10.0, 20.0);
 
         Assert.assertEquals(expectedTemp, actual.getTemp(), 0);
         Assert.assertEquals(expectedCity, actual.getCityname());

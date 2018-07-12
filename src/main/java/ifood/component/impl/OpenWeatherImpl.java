@@ -1,6 +1,7 @@
 package ifood.component.impl;
 
 import ifood.component.OpenWeather;
+import ifood.exception.InvalidCityException;
 import ifood.model.OpenWeatherResponse;
 import ifood.validator.CityValidator;
 import lombok.extern.slf4j.Slf4j;
@@ -50,11 +51,10 @@ public class OpenWeatherImpl implements OpenWeather {
         try {
             return restTemplate.getForObject(getWeatherUri(cityname, lat, lon), OpenWeatherResponse.class);
         } catch (HttpClientErrorException hcee) {
-            if (hcee.getStatusCode() != HttpStatus.NOT_FOUND) {
-                log.error(hcee.getMessage(), hcee);
-                throw hcee;
+            if (HttpStatus.NOT_FOUND.equals(hcee.getStatusCode())) {
+                throw new InvalidCityException(cityname, lat, lon, hcee);
             }
+            throw hcee;
         }
-        return new OpenWeatherResponse("", 0, "");
     }
 }
