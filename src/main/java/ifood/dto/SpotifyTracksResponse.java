@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class SpotifyTracksResponse {
 
-    private static final String ITEM_NODE = "item";
+    private static final String ITEMS_NODE = "items";
     private static final String TRACK_NODE = "track";
     private static final String NAME_NODE = "name";
 
     private List<SpotifyTrackData> tracks;
 
-    @JsonProperty(ITEM_NODE)
+    @JsonProperty(ITEMS_NODE)
     private void getTrackNames(List<Map<String, Object>> playlists) {
         this.tracks = playlists.stream().map(track -> {
             final Map<String, String> items = (Map<String, String>) track.get(TRACK_NODE);

@@ -3,6 +3,7 @@ package ifood.component.impl;
 import ifood.component.Spotify;
 import ifood.dto.SpotifyPlaylistResponse;
 import ifood.dto.SpotifyTracksResponse;
+import ifood.dto.TrackCategory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +42,11 @@ public class SpotifyImpl implements Spotify {
     }
 
     @Override
-    public SpotifyPlaylistResponse getPlaylist(final String category, final String country, final String token) {
+    public SpotifyPlaylistResponse getPlaylist(final TrackCategory trackCategory,
+                                               final String country,
+                                               final String token) {
         try {
-            final String playlistEndpoint = String.format(playlistBaseEndpoint, category);
+            final String playlistEndpoint = String.format(playlistBaseEndpoint, trackCategory.toString());
             final UriComponentsBuilder playlistUriBuilder = UriComponentsBuilder.fromUriString(playlistEndpoint);
 
             if (StringUtils.isNotBlank(country)) {
@@ -84,11 +87,6 @@ public class SpotifyImpl implements Spotify {
             if (response.hasBody()) {
                 return response.getBody();
             }
-
-            //log.info(restTemplate.exchange(uri, HttpMethod.GET, createHttpHeader(token), String.class).getBody());
-
-            //return null;
-
         } catch (HttpClientErrorException hcee) {
             if (hcee.getStatusCode() != HttpStatus.NOT_FOUND) {
                 throw hcee;

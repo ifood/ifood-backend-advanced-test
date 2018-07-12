@@ -22,7 +22,7 @@ public class PlaylistBuilderServiceTest extends BaseTest {
     @Test
     public void successCitynameTest() {
         when(openWeather.getCityTemp("Campinas"))
-                .thenReturn(new OpenWeatherResponse("Campinas", 25.0));
+                .thenReturn(new OpenWeatherResponse("Campinas", 25.0, "BR"));
 
         final double expectedTemp = 25;
         final String expectedCity = "Campinas";
@@ -36,7 +36,7 @@ public class PlaylistBuilderServiceTest extends BaseTest {
     @Test
     public void successGeoTest() {
         when(openWeather.getCityTemp(10.0, 20.0))
-                .thenReturn(new OpenWeatherResponse("Sorocaba", 15.0));
+                .thenReturn(new OpenWeatherResponse("Sorocaba", 15.0, "BR"));
 
         final double expectedTemp = 15;
         final String expectedCity = "Sorocaba";
