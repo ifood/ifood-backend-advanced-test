@@ -1,6 +1,5 @@
 package ifood.component;
 
-import ifood.component.OpenWeather;
 import ifood.exception.BaseException;
 import ifood.exception.ExceptionOriginEnum;
 import ifood.exception.InvalidCityException;
