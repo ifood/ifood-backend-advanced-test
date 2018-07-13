@@ -1,6 +1,5 @@
 package ifood.component;
 
-import com.github.tomakehurst.wiremock.client.WireMock;
 import ifood.config.BaseTest;
 import ifood.config.WiremockStarter;
 import ifood.exception.BaseException;
@@ -128,80 +127,64 @@ public class OpenWeatherTest extends BaseTest {
                 .willReturn(aResponse()
                         .withStatus(HttpStatus.INTERNAL_SERVER_ERROR.value())));
 
-        final String expectedMesage = "500 Server Error";
-
         expectedException.expect(BaseException.class);
-        expectedException.expectMessage(expectedMesage);
+        expectedException.expectMessage("500 Server Error");
 
         openWeather.getCityTemp(null, 9.9, 9.9);
     }
 
     @Test
     public void getCityTempNullLatTest() {
-        final String expectedMesage = "Dados de localização inválidos: [lat:null] [lon:-46.63]";
-
         expectedException.expect(InvalidCityException.class);
-        expectedException.expectMessage(expectedMesage);
+        expectedException.expectMessage("Dados de localização inválidos: [lat:null] [lon:-46.63]");
 
         openWeather.getCityTemp(null, null, -46.63);
     }
 
     @Test
     public void getCityTempNullLonTest() {
-        final String expectedMesage = "Dados de localização inválidos: [lat:-23.55] [lon:null]";
-
         expectedException.expect(InvalidCityException.class);
-        expectedException.expectMessage(expectedMesage);
+        expectedException.expectMessage("Dados de localização inválidos: [lat:-23.55] [lon:null]");
 
         openWeather.getCityTemp(null, -23.55, null);
     }
 
     @Test
     public void getCityTempNullLatLonTest() {
-        final String expectedMesage = "Dados de localização inválidos: [lat:null] [lon:null]";
-
         expectedException.expect(InvalidCityException.class);
-        expectedException.expectMessage(expectedMesage);
+        expectedException.expectMessage("Dados de localização inválidos: [lat:null] [lon:null]");
 
         openWeather.getCityTemp(null, null, null);
     }
 
     @Test
     public void getCityTempUnderEdgeLatTest() {
-        final String expectedMesage = "Valor de latitude inválido: [lat:-90.01]";
-
         expectedException.expect(InvalidCityException.class);
-        expectedException.expectMessage(expectedMesage);
+        expectedException.expectMessage("Valor de latitude inválido: [lat:-90.01]");
 
         openWeather.getCityTemp(null, -90.01, 10.0);
     }
 
     @Test
     public void getCityTempOverEdgeLatTest() {
-        final String expectedMesage = "Valor de latitude inválido: [lat:90.01]";
-
         expectedException.expect(InvalidCityException.class);
-        expectedException.expectMessage(expectedMesage);
+        expectedException.expectMessage("Valor de latitude inválido: [lat:90.01]");
 
         openWeather.getCityTemp(null, 90.01, 10.0);
     }
 
     @Test
     public void getCityTempUnderEdgeLonTest() {
-        final String expectedMesage = "Valor de longitude inválido: [lon:-180.01]";
-
         expectedException.expect(InvalidCityException.class);
-        expectedException.expectMessage(expectedMesage);
+        expectedException.expectMessage("Valor de longitude inválido: [lon:-180.01]");
 
         openWeather.getCityTemp(null, 10.0, -180.01);
     }
 
     @Test
     public void getCityTempOverEdgeLonTest() {
-        final String expectedMesage = "Valor de longitude inválido: [lon:180.01]";
-
         expectedException.expect(InvalidCityException.class);
-        expectedException.expectMessage(expectedMesage);
+        expectedException.expectMessage("Valor de longitude inválido: [lon:180.01]");
 
         openWeather.getCityTemp(null, 10.0, 180.01);
     }

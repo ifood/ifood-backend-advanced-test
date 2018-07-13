@@ -10,6 +10,8 @@ public class CityValidator {
     private static final double LON_MIN = -180;
     private static final double LON_MAX = 180;
 
+    private CityValidator() {}
+
     public static void validate(final String cityname, final Double lat, final Double lon) {
         if (StringUtils.isNotBlank(cityname)) {
             return;

@@ -15,7 +15,7 @@ public class PlaylistBuilderController {
 
     private final PlaylistBuilderService service;
 
-    @GetMapping(value = "/weather", produces = "application/json")
+    /*@GetMapping(value = "/weather", produces = "application/json")
     public WeatherResponse getWeather(final String cityname, final Double lat, final Double lon) {
         return service.getWeather(cityname, lat, lon);
     }
@@ -28,7 +28,7 @@ public class PlaylistBuilderController {
     @GetMapping(value = "/tracks", produces = "application/json")
     public SpotifyTracksResponse getTracks(final String playlistId, final String token) {
         return service.getTracks(playlistId, token);
-    }
+    }*/
 
     @GetMapping(value = "/search", produces = "application/json")
     public List<SpotifyTrackData> search(final String cityname, final Double lat, final Double lon, final String token) {

@@ -80,10 +80,8 @@ public class SpotifyTracksByPlaylistsTest extends BaseTest {
                         .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE)
                         .withBodyFile("mock/spotify/tracks/invalid_playlist_id.json")));
 
-        final String expectedMesage = "Dados não encontrados: [inputs:invalid-playlist]";
-
         expectedException.expect(SpotifyInvalidDataException.class);
-        expectedException.expectMessage(expectedMesage);
+        expectedException.expectMessage("Dados não encontrados: [inputs:invalid-playlist]");
 
         spotify.getTracks("invalid-playlist", "test-token");
     }
@@ -95,10 +93,8 @@ public class SpotifyTracksByPlaylistsTest extends BaseTest {
                 .willReturn(aResponse()
                         .withStatus(HttpStatus.INTERNAL_SERVER_ERROR.value())));
 
-        final String expectedMesage = "500 Server Error";
-
         expectedException.expect(BaseException.class);
-        expectedException.expectMessage(expectedMesage);
+        expectedException.expectMessage("500 Server Error");
 
         spotify.getTracks("servererror-playlist", "test-token");
     }
@@ -110,10 +106,8 @@ public class SpotifyTracksByPlaylistsTest extends BaseTest {
                 .willReturn(aResponse()
                         .withStatus(HttpStatus.UNAUTHORIZED.value())));
 
-        final String expectedMesage = "Acesso não autorizado (verifique o token de acesso). Mensagem original: [401 Unauthorized]";
-
         expectedException.expect(SpotifyUnnauthorizedException.class);
-        expectedException.expectMessage(expectedMesage);
+        expectedException.expectMessage("Acesso não autorizado (verifique o token de acesso). Mensagem original: [401 Unauthorized]");
 
         spotify.getTracks("test-playlist", "test-token");
     }
