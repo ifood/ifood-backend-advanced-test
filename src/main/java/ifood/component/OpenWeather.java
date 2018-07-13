@@ -20,6 +20,13 @@ import java.net.URI;
 @Component
 public class OpenWeather {
 
+    private static final String APPID_KEY = "appid";
+    private static final String UNITS_KEY = "units";
+    private static final String UNITS_VALUE = "metric";
+    private static final String LAT_KEY = "lat";
+    private static final String LON_KEY = "lon";
+    private static final String QUERY_KEY = "q";
+
     private final String appKey;
 
     private final RestTemplate restTemplate;
@@ -39,11 +46,11 @@ public class OpenWeather {
         CityValidator.validate(cityname, lat, lon);
 
         final UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(openWeatherBaseEndpoint);
-        uriBuilder.queryParam("appid", appKey).queryParam("units", "metric");
+        uriBuilder.queryParam(APPID_KEY, appKey).queryParam(UNITS_KEY, UNITS_VALUE);
 
         return StringUtils.isBlank(cityname)
-                ? uriBuilder.queryParam("lat", lat).queryParam("lon", lon).build().toUri()
-                : uriBuilder.queryParam("q", cityname).build().toUri();
+                ? uriBuilder.queryParam(LAT_KEY, lat).queryParam(LON_KEY, lon).build().toUri()
+                : uriBuilder.queryParam(QUERY_KEY, cityname).build().toUri();
     }
 
     public OpenWeatherResponse getCityTemp(final String cityname, final Double lat, final Double lon) {

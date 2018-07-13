@@ -20,6 +20,10 @@ import java.net.URI;
 @Slf4j
 public class Spotify {
 
+    private static final String COUNTRY_KEY = "country";
+    private static final String AUTH_HEADER_KEY = "Authorization";
+    private static final String AUTH_HEADER_TOKEN_FORMAT = "Bearer %s";
+
     private final RestTemplate restTemplate;
 
     private final String playlistBaseEndpoint;
@@ -48,7 +52,7 @@ public class Spotify {
 
     private HttpEntity<String> createHttpHeader(final String token) {
         final HttpHeaders header = new HttpHeaders();
-        header.set("Authorization", String.format("Bearer %s", token));
+        header.set(AUTH_HEADER_KEY, String.format(AUTH_HEADER_TOKEN_FORMAT, token));
         return new HttpEntity<>(header);
     }
 
@@ -57,7 +61,7 @@ public class Spotify {
         final UriComponentsBuilder playlistUriBuilder = UriComponentsBuilder.fromUriString(playlistEndpoint);
 
         if (StringUtils.isNotBlank(country)) {
-            playlistUriBuilder.queryParam("country", country);
+            playlistUriBuilder.queryParam(COUNTRY_KEY, country);
         }
 
         return playlistUriBuilder.build().toUri();
