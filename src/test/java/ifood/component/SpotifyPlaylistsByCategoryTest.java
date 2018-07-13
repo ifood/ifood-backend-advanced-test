@@ -20,7 +20,7 @@ import org.springframework.http.MediaType;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
-public class SpotifyCategoryTest extends BaseTest {
+public class SpotifyPlaylistsByCategoryTest extends BaseTest {
 
     @Autowired
     private Spotify spotify;
@@ -96,7 +96,7 @@ public class SpotifyCategoryTest extends BaseTest {
     }
 
     @Test
-    public void getPartyPlaylistInvalidCountryBadRequestTest() {
+    public void playlistInvalidCountryBadRequestTest() {
         stubFor(get(urlPathEqualTo("/spotify/party/playlists"))
                 .withQueryParam("country", equalTo("AA"))
                 .withHeader("Authorization", equalTo("Bearer test-token"))
@@ -114,7 +114,7 @@ public class SpotifyCategoryTest extends BaseTest {
     }
 
     @Test
-    public void getPartyPlaylistBadRequestTest() {
+    public void playlistServerErrorTest() {
         stubFor(get(urlPathEqualTo("/spotify/party/playlists"))
                 .withQueryParam("country", equalTo("DE"))
                 .withHeader("Authorization", equalTo("Bearer test-token"))
@@ -130,7 +130,7 @@ public class SpotifyCategoryTest extends BaseTest {
     }
 
     @Test
-    public void getRockPlaylistUnnauthorizedTest() {
+    public void gplaylistUnnauthorizedTest() {
         stubFor(get(urlPathEqualTo("/spotify/rock/playlists"))
                 .withQueryParam("country", equalTo("CA"))
                 .withHeader("Authorization", equalTo("Bearer test-token"))

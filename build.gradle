@@ -71,7 +71,6 @@ jacocoTestReport {
             fileTree(dir: it, exclude: [
                 'ifood/IfoodBackendAdvancedTest.class',
                 'ifood/config/*.class',
-                'ifood/dto/*.class',
                 'ifood/utils/WiremockStarter.class'
             ])
         })

@@ -12,14 +12,6 @@ public class InvalidCityException extends BaseException {
         super(String.format(FULL_MESSAGE, cityname, lat, lon), cause, ExceptionOriginEnum.OPEN_WEATHER_API);
     }
 
-    public InvalidCityException(final String cityname, final Double lat, final Double lon) {
-        super(String.format(FULL_MESSAGE, cityname, lat, lon), ExceptionOriginEnum.OPEN_WEATHER_API);
-    }
-
-    public InvalidCityException(final String message, final Throwable cause) {
-        super(message, cause, ExceptionOriginEnum.INTERNAL);
-    }
-
     public InvalidCityException(final String message) {
         super(message, ExceptionOriginEnum.OPEN_WEATHER_API);
     }

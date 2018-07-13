@@ -11,8 +11,4 @@ public class OpenWeatherInvalidResponseException extends BaseException {
     public OpenWeatherInvalidResponseException(final String url, final Throwable cause) {
         super(String.format(FULL_MESSAGE, url), cause, ExceptionOriginEnum.OPEN_WEATHER_API);
     }
-
-    public OpenWeatherInvalidResponseException(final String url) {
-        super(String.format(FULL_MESSAGE, url), ExceptionOriginEnum.OPEN_WEATHER_API);
-    }
 }

@@ -42,7 +42,7 @@ public class Spotify {
     private BaseException handleHttpClientError(final HttpClientErrorException cause,
                                                 final String[] values,
                                                 final String url) {
-        if (HttpStatus.BAD_REQUEST.equals(cause.getStatusCode())) {
+        if (HttpStatus.NOT_FOUND.equals(cause.getStatusCode()) || HttpStatus.BAD_REQUEST.equals(cause.getStatusCode())) {
             throw new SpotifyInvalidDataException(values);
         } else if (HttpStatus.UNAUTHORIZED.equals(cause.getStatusCode())) {
             throw new SpotifyUnnauthorizedException(cause);

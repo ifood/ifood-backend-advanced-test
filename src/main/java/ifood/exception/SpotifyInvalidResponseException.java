@@ -11,8 +11,4 @@ public class SpotifyInvalidResponseException extends BaseException {
     public SpotifyInvalidResponseException(final String url, final Throwable cause) {
         super(String.format(FULL_MESSAGE, url), cause, ExceptionOriginEnum.SPOTIFY_APY);
     }
-
-    public SpotifyInvalidResponseException(final String url) {
-        super(String.format(FULL_MESSAGE, url), ExceptionOriginEnum.SPOTIFY_APY);
-    }
 }
