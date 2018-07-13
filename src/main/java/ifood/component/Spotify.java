@@ -1,5 +1,6 @@
 package ifood.component;
 
+import ifood.exception.*;
 import ifood.model.SpotifyPlaylistResponse;
 import ifood.model.SpotifyTracksResponse;
 import ifood.model.TrackCategoryEnum;
@@ -40,57 +41,60 @@ public class Spotify {
         return new HttpEntity<>(header);
     }
 
-    public SpotifyPlaylistResponse getPlaylist(final TrackCategoryEnum trackCategoryEnum,
+    private URI getSpotifyPlaylistUri(final TrackCategoryEnum trackCategoryEnum, final String country) {
+        final String playlistEndpoint = String.format(playlistBaseEndpoint, trackCategoryEnum.toString());
+        final UriComponentsBuilder playlistUriBuilder = UriComponentsBuilder.fromUriString(playlistEndpoint);
+
+        if (StringUtils.isNotBlank(country)) {
+            playlistUriBuilder.queryParam("country", country);
+        }
+
+        return playlistUriBuilder.build().toUri();
+    }
+
+    private URI getSpotifyTracksUri(final String playListId) {
+        final String tracksEndpoint = String.format(tracksBaseEndpoint, playListId);
+        final UriComponentsBuilder trackUriBuilder = UriComponentsBuilder.fromUriString(tracksEndpoint);
+        return trackUriBuilder.build().toUri();
+    }
+
+    public SpotifyPlaylistResponse getPlaylist(final TrackCategoryEnum trackCategory,
                                                final String country,
                                                final String token) {
+        final URI uri = getSpotifyPlaylistUri(trackCategory, country);
         try {
-            final String playlistEndpoint = String.format(playlistBaseEndpoint, trackCategoryEnum.toString());
-            final UriComponentsBuilder playlistUriBuilder = UriComponentsBuilder.fromUriString(playlistEndpoint);
-
-            if (StringUtils.isNotBlank(country)) {
-                playlistUriBuilder.queryParam("country", country);
-            }
-
-            final URI uri = playlistUriBuilder.build().toUri();
-
-            log.info(uri.toString());
             ResponseEntity<SpotifyPlaylistResponse> response =
                     restTemplate.exchange(uri, HttpMethod.GET, createHttpHeader(token), SpotifyPlaylistResponse.class);
 
-            if (response.hasBody()) {
-                return response.getBody();
-            }
-
+            return response.getBody();
         } catch (HttpClientErrorException hcee) {
-            if (hcee.getStatusCode() != HttpStatus.NOT_FOUND) {
-                throw hcee;
+            if (HttpStatus.NOT_FOUND.equals(hcee.getStatusCode())) {
+                throw new SpotifyInvalidCategoryException(trackCategory, country, hcee);
+            } else if (HttpStatus.UNAUTHORIZED.equals(hcee.getStatusCode())) {
+                throw new SpotifyUnnauthorizedException(hcee);
             }
+            throw new SpotifyInvalidResponseException(uri.toString(), hcee);
         } catch (Exception ex) {
-            throw ex;
+            throw new BaseException(ex.getMessage(), ex, ExceptionOriginEnum.INTERNAL);
         }
-        return new SpotifyPlaylistResponse(null);
     }
 
     public SpotifyTracksResponse getTracks(final String playListId, final String token) {
+        final URI uri = getSpotifyTracksUri(playListId);
         try {
-            final String tracksEndpoint = String.format(tracksBaseEndpoint, playListId);
-            final UriComponentsBuilder trackUriBuilder = UriComponentsBuilder.fromUriString(tracksEndpoint);
-            final URI uri = trackUriBuilder.build().toUri();
-
-            log.info(uri.toString());
             ResponseEntity<SpotifyTracksResponse> response =
                     restTemplate.exchange(uri, HttpMethod.GET, createHttpHeader(token), SpotifyTracksResponse.class);
 
-            if (response.hasBody()) {
-                return response.getBody();
-            }
+            return response.getBody();
         } catch (HttpClientErrorException hcee) {
-            if (hcee.getStatusCode() != HttpStatus.NOT_FOUND) {
-                throw hcee;
+            if (HttpStatus.NOT_FOUND.equals(hcee.getStatusCode())) {
+                throw new SpotifyInvalidPlaylistException(playListId, hcee);
+            } else if (HttpStatus.UNAUTHORIZED.equals(hcee.getStatusCode())) {
+                throw new SpotifyUnnauthorizedException(hcee);
             }
+            throw new SpotifyInvalidResponseException(uri.toString(), hcee);
         } catch (Exception ex) {
-            throw ex;
+            throw new BaseException(ex.getMessage(), ex, ExceptionOriginEnum.INTERNAL);
         }
-        return new SpotifyTracksResponse(null);
     }
 }

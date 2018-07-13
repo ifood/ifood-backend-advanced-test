@@ -21,8 +21,8 @@ public class PlaylistBuilderController {
     }
 
     @GetMapping(value = "/playlist", produces = "application/json")
-    public SpotifyPlaylistResponse getPlaylist(final TrackCategoryEnum category, final String country, final String token) {
-        return service.getPlaylist(category, country, token);
+    public SpotifyPlaylistResponse getPlaylist(final String category, final String country, final String token) {
+        return service.getPlaylist(TrackCategoryEnum.valueOf(category.toUpperCase()), country, token);
     }
 
     @GetMapping(value = "/tracks", produces = "application/json")

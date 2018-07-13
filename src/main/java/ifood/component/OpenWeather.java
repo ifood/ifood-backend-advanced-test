@@ -3,7 +3,7 @@ package ifood.component;
 import ifood.exception.BaseException;
 import ifood.exception.ExceptionOriginEnum;
 import ifood.exception.InvalidCityException;
-import ifood.exception.InvalidOpenWeatherResponseException;
+import ifood.exception.OpenWeatherInvalidResponseException;
 import ifood.model.OpenWeatherResponse;
 import ifood.validator.CityValidator;
 import org.apache.commons.lang3.StringUtils;
@@ -54,7 +54,7 @@ public class OpenWeather {
             if (HttpStatus.NOT_FOUND.equals(hcee.getStatusCode())) {
                 throw new InvalidCityException(cityname, lat, lon, hcee);
             }
-            throw new InvalidOpenWeatherResponseException(uri.toString(), hcee);
+            throw new OpenWeatherInvalidResponseException(uri.toString(), hcee);
         } catch (Exception ex) {
             throw new BaseException(ex.getMessage(), ex, ExceptionOriginEnum.INTERNAL);
         }
