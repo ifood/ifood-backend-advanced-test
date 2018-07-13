@@ -35,6 +35,17 @@ public class Spotify {
         this.restTemplate = restTemplate;
     }
 
+    private BaseException handleHttpClientError(final HttpClientErrorException cause,
+                                                final String additionalInfo,
+                                                final String url) {
+        if (HttpStatus.NOT_FOUND.equals(cause.getStatusCode()) || HttpStatus.BAD_REQUEST.equals(cause.getStatusCode())) {
+            throw new SpotifyInvalidDataException(additionalInfo, url, cause);
+        } else if (HttpStatus.UNAUTHORIZED.equals(cause.getStatusCode())) {
+            throw new SpotifyUnnauthorizedException(cause);
+        }
+        throw new SpotifyInvalidResponseException(url, cause);
+    }
+
     private HttpEntity<String> createHttpHeader(final String token) {
         final HttpHeaders header = new HttpHeaders();
         header.set("Authorization", String.format("Bearer %s", token));
@@ -68,12 +79,7 @@ public class Spotify {
 
             return response.getBody();
         } catch (HttpClientErrorException hcee) {
-            if (HttpStatus.NOT_FOUND.equals(hcee.getStatusCode())) {
-                throw new SpotifyInvalidCategoryException(trackCategory, country, hcee);
-            } else if (HttpStatus.UNAUTHORIZED.equals(hcee.getStatusCode())) {
-                throw new SpotifyUnnauthorizedException(hcee);
-            }
-            throw new SpotifyInvalidResponseException(uri.toString(), hcee);
+            throw handleHttpClientError(hcee, trackCategory.name(), uri.toString());
         } catch (Exception ex) {
             throw new BaseException(ex.getMessage(), ex, ExceptionOriginEnum.INTERNAL);
         }
@@ -87,12 +93,7 @@ public class Spotify {
 
             return response.getBody();
         } catch (HttpClientErrorException hcee) {
-            if (HttpStatus.NOT_FOUND.equals(hcee.getStatusCode())) {
-                throw new SpotifyInvalidPlaylistException(playListId, hcee);
-            } else if (HttpStatus.UNAUTHORIZED.equals(hcee.getStatusCode())) {
-                throw new SpotifyUnnauthorizedException(hcee);
-            }
-            throw new SpotifyInvalidResponseException(uri.toString(), hcee);
+            throw handleHttpClientError(hcee, playListId, uri.toString());
         } catch (Exception ex) {
             throw new BaseException(ex.getMessage(), ex, ExceptionOriginEnum.INTERNAL);
         }

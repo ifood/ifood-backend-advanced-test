@@ -51,7 +51,7 @@ public class OpenWeather {
         try {
             return restTemplate.getForObject(uri, OpenWeatherResponse.class);
         } catch (HttpClientErrorException hcee) {
-            if (HttpStatus.NOT_FOUND.equals(hcee.getStatusCode())) {
+            if (HttpStatus.NOT_FOUND.equals(hcee.getStatusCode()) || HttpStatus.BAD_REQUEST.equals(hcee.getStatusCode())) {
                 throw new InvalidCityException(cityname, lat, lon, hcee);
             }
             throw new OpenWeatherInvalidResponseException(uri.toString(), hcee);
