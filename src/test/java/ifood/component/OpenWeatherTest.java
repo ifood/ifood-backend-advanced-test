@@ -28,7 +28,7 @@ public class OpenWeatherTest extends BaseTest {
 
     @Before
     public void setUp() {
-        WireMock.configureFor(WiremockStarter.PORT_NUMBER);
+        configureFor(WiremockStarter.PORT_NUMBER);
     }
 
     @Test

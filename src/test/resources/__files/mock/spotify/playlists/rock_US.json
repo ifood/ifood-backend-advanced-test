@@ -1,0 +1,148 @@
+{
+  "playlists": {
+    "href": "https://api.spotify.com/v1/browse/categories/rock/playlists?country=US&offset=0&limit=20",
+    "items": [
+      {
+        "collaborative": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DXcF6B6QPhFDv"
+        },
+        "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DXcF6B6QPhFDv",
+        "id": "37i9dQZF1DXcF6B6QPhFDv",
+        "images": [
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/7ab4c0f400cebec3e02f0a9f68a5597e7d15bd70",
+            "width": 300
+          }
+        ],
+        "name": "Rock This",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "public": null,
+        "snapshot_id": "d3g0PiS+LheWjo/hqCky2WJX4bTxSMsyA/OcqvEKtGAwoE4SkDOj3sISOR4YBBiN1Cp9C404EoI=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DXcF6B6QPhFDv/tracks",
+          "total": 53
+        },
+        "type": "playlist",
+        "uri": "spotify:user:spotify:playlist:37i9dQZF1DXcF6B6QPhFDv"
+      },
+      {
+        "collaborative": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DWT2jS7NwYPVI"
+        },
+        "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DWT2jS7NwYPVI",
+        "id": "37i9dQZF1DWT2jS7NwYPVI",
+        "images": [
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/a899f21997ffbb6e9f940bb1a7dc1e12900148e9",
+            "width": 300
+          }
+        ],
+        "name": "New Noise",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "public": null,
+        "snapshot_id": "82gBr35NQGtv23VilaXjOPE/1YcvM/sjVlxPrNvTMahfO34ZtoK0h4M7lG8xQwa8SukFj9cwQ3E=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DWT2jS7NwYPVI/tracks",
+          "total": 106
+        },
+        "type": "playlist",
+        "uri": "spotify:user:spotify:playlist:37i9dQZF1DWT2jS7NwYPVI"
+      },
+      {
+        "collaborative": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX82GYcclJ3Ug"
+        },
+        "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DX82GYcclJ3Ug",
+        "id": "37i9dQZF1DX82GYcclJ3Ug",
+        "images": [
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/b0a97c7e3217e436f992be237bdb9eb14c71f5f0",
+            "width": 300
+          }
+        ],
+        "name": "Digging Now",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "public": null,
+        "snapshot_id": "59O/jfOg2T8+qQjRDHkPQO6blSvUaR8ks/V8EIsf8stKBwDediFuGejPklu8cW333SRIxhm5/UA=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DX82GYcclJ3Ug/tracks",
+          "total": 99
+        },
+        "type": "playlist",
+        "uri": "spotify:user:spotify:playlist:37i9dQZF1DX82GYcclJ3Ug"
+      },
+      {
+        "collaborative": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DWWJOmJ7nRx0C"
+        },
+        "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DWWJOmJ7nRx0C",
+        "id": "37i9dQZF1DWWJOmJ7nRx0C",
+        "images": [
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/7da30c10718e79c9002d158d850e94cab007c82f",
+            "width": 300
+          }
+        ],
+        "name": "Rock Hard",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "public": null,
+        "snapshot_id": "DFX488EY0HnItf6mK1biXuQf9wRAzzMpiHnotOe4/yAaJ1PnVn4Cmx6DIQYRFAy8Lls5NACknEg=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DWWJOmJ7nRx0C/tracks",
+          "total": 102
+        },
+        "type": "playlist",
+        "uri": "spotify:user:spotify:playlist:37i9dQZF1DWWJOmJ7nRx0C"
+      }
+    ],
+    "limit": 20,
+    "next": "https://api.spotify.com/v1/browse/categories/rock/playlists?country=US&offset=20&limit=20",
+    "offset": 0,
+    "previous": null,
+    "total": 4
+  }
+}

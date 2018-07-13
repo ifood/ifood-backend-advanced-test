@@ -40,10 +40,10 @@ public class Spotify {
     }
 
     private BaseException handleHttpClientError(final HttpClientErrorException cause,
-                                                final String additionalInfo,
+                                                final String[] values,
                                                 final String url) {
-        if (HttpStatus.NOT_FOUND.equals(cause.getStatusCode()) || HttpStatus.BAD_REQUEST.equals(cause.getStatusCode())) {
-            throw new SpotifyInvalidDataException(additionalInfo, url, cause);
+        if (HttpStatus.BAD_REQUEST.equals(cause.getStatusCode())) {
+            throw new SpotifyInvalidDataException(values);
         } else if (HttpStatus.UNAUTHORIZED.equals(cause.getStatusCode())) {
             throw new SpotifyUnnauthorizedException(cause);
         }
@@ -83,7 +83,7 @@ public class Spotify {
 
             return response.getBody();
         } catch (HttpClientErrorException hcee) {
-            throw handleHttpClientError(hcee, trackCategory.name(), uri.toString());
+            throw handleHttpClientError(hcee, new String[] { trackCategory.name(), country }, uri.toString());
         } catch (Exception ex) {
             throw new BaseException(ex.getMessage(), ex, ExceptionOriginEnum.INTERNAL);
         }
@@ -97,7 +97,7 @@ public class Spotify {
 
             return response.getBody();
         } catch (HttpClientErrorException hcee) {
-            throw handleHttpClientError(hcee, playListId, uri.toString());
+            throw handleHttpClientError(hcee, new String[] { playListId }, uri.toString());
         } catch (Exception ex) {
             throw new BaseException(ex.getMessage(), ex, ExceptionOriginEnum.INTERNAL);
         }
