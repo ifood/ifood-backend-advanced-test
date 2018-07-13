@@ -4,7 +4,6 @@ import ifood.component.OpenWeather;
 import ifood.component.Spotify;
 import ifood.model.*;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -64,7 +63,7 @@ public class PlaylistBuilderService {
 
     public WeatherResponse getWeather(final String cityname, final Double lat, final Double lon) {
         final OpenWeatherResponse weatherData = openWeather.getCityTemp(cityname, lat, lon);
-        return new WeatherResponse(weatherData.getName(), weatherData.getMainTemp(), weatherData.getCountry());
+        return new WeatherResponse(weatherData.getCityname(), weatherData.getMainTemp(), weatherData.getCountry());
     }
 
     public List<SpotifyTrackData> getTracksByLocation(final String cityname, final Double lat, final Double lon,

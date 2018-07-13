@@ -1,0 +1,42 @@
+{
+  "coord": {
+    "lon": -47.06,
+    "lat": -22.91
+  },
+  "weather": [
+    {
+      "id": 800,
+      "main": "Clear",
+      "description": "clear sky",
+      "icon": "01n"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 20,
+    "pressure": 1022,
+    "humidity": 79,
+    "temp_min": 18,
+    "temp_max": 22
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 2.6,
+    "deg": 230
+  },
+  "clouds": {
+    "all": 0
+  },
+  "dt": 1531432800,
+  "sys": {
+    "type": 1,
+    "id": 4521,
+    "message": 0.0024,
+    "country": "BR",
+    "sunrise": 1531388939,
+    "sunset": 1531427951
+  },
+  "id": 3467865,
+  "name": "Campinas",
+  "cod": 200
+}

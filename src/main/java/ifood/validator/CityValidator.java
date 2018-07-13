@@ -15,9 +15,9 @@ public class CityValidator {
             return;
         }
 
-        if (lat.equals(null) || lon.equals(null)) {
+        if (lat == null || lon == null) {
             throw new InvalidCityException(
-                    String.format("Dados de localicação inválidos: [lat:%s] [lon:%s]", lat, lon));
+                    String.format("Dados de localização inválidos: [lat:%s] [lon:%s]", lat, lon));
         }
 
         if (lat < LAT_MIN || lat > LAT_MAX) {

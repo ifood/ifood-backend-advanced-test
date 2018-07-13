@@ -1,10 +1,12 @@
 package ifood.component.impl;
 
 import ifood.component.OpenWeather;
+import ifood.exception.BaseException;
+import ifood.exception.ExceptionOriginEnum;
 import ifood.exception.InvalidCityException;
+import ifood.exception.InvalidOpenWeatherResponseException;
 import ifood.model.OpenWeatherResponse;
 import ifood.validator.CityValidator;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +19,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @Component
-@Slf4j
 public class OpenWeatherImpl implements OpenWeather {
 
     private final String appKey;
@@ -42,19 +43,22 @@ public class OpenWeatherImpl implements OpenWeather {
         uriBuilder.queryParam("appid", appKey).queryParam("units", "metric");
 
         return StringUtils.isBlank(cityname)
-            ? uriBuilder.queryParam("lat", lat).queryParam("lon", lon).build().toUri()
-            : uriBuilder.queryParam("q", cityname).build().toUri();
+                ? uriBuilder.queryParam("lat", lat).queryParam("lon", lon).build().toUri()
+                : uriBuilder.queryParam("q", cityname).build().toUri();
     }
 
     @Override
     public OpenWeatherResponse getCityTemp(final String cityname, final Double lat, final Double lon) {
+        final URI uri = getWeatherUri(cityname, lat, lon);
         try {
-            return restTemplate.getForObject(getWeatherUri(cityname, lat, lon), OpenWeatherResponse.class);
+            return restTemplate.getForObject(uri, OpenWeatherResponse.class);
         } catch (HttpClientErrorException hcee) {
             if (HttpStatus.NOT_FOUND.equals(hcee.getStatusCode())) {
                 throw new InvalidCityException(cityname, lat, lon, hcee);
             }
-            throw hcee;
+            throw new InvalidOpenWeatherResponseException(uri.toString(), hcee);
+        } catch (Exception ex) {
+            throw new BaseException(ex.getMessage(), ex, ExceptionOriginEnum.INTERNAL);
         }
     }
 }
