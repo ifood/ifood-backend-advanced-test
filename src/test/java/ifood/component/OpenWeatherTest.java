@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+
 public class OpenWeatherTest extends BaseTest {
 
     @Autowired
@@ -31,8 +33,11 @@ public class OpenWeatherTest extends BaseTest {
 
     @Test
     public void getCityTempSuccessTest() {
-        WireMock.stubFor(WireMock.get(WireMock.urlEqualTo("/weather?appid=test-key&units=metric&q=campinas"))
-                .willReturn(WireMock.aResponse()
+        stubFor(get(urlPathEqualTo("/weather"))
+                .withQueryParam("appid", equalTo("test-key"))
+                .withQueryParam("units", equalTo("metric"))
+                .withQueryParam("q", equalTo("campinas"))
+                .willReturn(aResponse()
                         .withStatus(HttpStatus.OK.value())
                         .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE)
                         .withBodyFile("mock/openWeather/campinas_BR_20.json")));
@@ -50,8 +55,11 @@ public class OpenWeatherTest extends BaseTest {
 
     @Test
     public void getCityTempInvalidCityNameTest() {
-        WireMock.stubFor(WireMock.get(WireMock.urlEqualTo("/weather?appid=test-key&units=metric&q=invalidcity"))
-                .willReturn(WireMock.aResponse()
+        stubFor(get(urlPathEqualTo("/weather"))
+                .withQueryParam("appid", equalTo("test-key"))
+                .withQueryParam("units", equalTo("metric"))
+                .withQueryParam("q", equalTo("invalidcity"))
+                .willReturn(aResponse()
                         .withStatus(HttpStatus.NOT_FOUND.value())
                         .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE)
                         .withBodyFile("mock/openWeather/city_not_found.json")));
@@ -66,8 +74,12 @@ public class OpenWeatherTest extends BaseTest {
 
     @Test
     public void getLatLonTempSuccessTest() {
-        WireMock.stubFor(WireMock.get(WireMock.urlEqualTo("/weather?appid=test-key&units=metric&lat=-23.55&lon=-46.63"))
-                .willReturn(WireMock.aResponse()
+        stubFor(get(urlPathEqualTo("/weather"))
+                .withQueryParam("appid", equalTo("test-key"))
+                .withQueryParam("units", equalTo("metric"))
+                .withQueryParam("lat", equalTo("-23.55"))
+                .withQueryParam("lon", equalTo("-46.63"))
+                .willReturn(aResponse()
                         .withStatus(HttpStatus.OK.value())
                         .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE)
                         .withBodyFile("mock/openWeather/lat_-23.55_lon_-46.63_BR_20.json")));
@@ -81,6 +93,47 @@ public class OpenWeatherTest extends BaseTest {
         Assert.assertEquals(expectedTemp, actual.getMainTemp(), 0);
         Assert.assertEquals(expectedCountry, actual.getCountry());
         Assert.assertEquals(expectedCity, actual.getCityname());
+    }
+
+    @Test
+    public void getCityZeroLatLonTest() {
+        stubFor(get(urlPathEqualTo("/weather"))
+                .withQueryParam("appid", equalTo("test-key"))
+                .withQueryParam("units", equalTo("metric"))
+                .withQueryParam("lat", equalTo("0.0"))
+                .withQueryParam("lon", equalTo("0.0"))
+                .willReturn(aResponse()
+                        .withStatus(HttpStatus.OK.value())
+                        .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE)
+                        .withBodyFile("mock/openWeather/lat_0_lon_0_EARTH_24.45.json")));
+
+        final double expectedTemp = 24.45;
+        final String expectedCountry = null;
+        final String expectedCity = "Earth";
+
+        final OpenWeatherResponse actual = openWeather.getCityTemp(null, 0.0, 0.0);
+
+        Assert.assertEquals(expectedTemp, actual.getMainTemp(), 0);
+        Assert.assertEquals(expectedCountry, actual.getCountry());
+        Assert.assertEquals(expectedCity, actual.getCityname());
+    }
+
+    @Test
+    public void getCityInternalServerErrorTest() {
+        stubFor(get(urlPathEqualTo("/weather"))
+                .withQueryParam("appid", equalTo("test-key"))
+                .withQueryParam("units", equalTo("metric"))
+                .withQueryParam("lat", equalTo("9.9"))
+                .withQueryParam("lon", equalTo("9.9"))
+                .willReturn(aResponse()
+                        .withStatus(HttpStatus.INTERNAL_SERVER_ERROR.value())));
+
+        final String expectedMesage = "500 Server Error";
+
+        expectedException.expect(BaseException.class);
+        expectedException.expectMessage(expectedMesage);
+
+        openWeather.getCityTemp(null, 9.9, 9.9);
     }
 
     @Test
@@ -151,38 +204,5 @@ public class OpenWeatherTest extends BaseTest {
         expectedException.expectMessage(expectedMesage);
 
         openWeather.getCityTemp(null, 10.0, 180.01);
-    }
-
-    @Test
-    public void getCityZeroLatLonTest() {
-        WireMock.stubFor(WireMock.get(WireMock.urlEqualTo("/weather?appid=test-key&units=metric&lat=0.0&lon=0.0"))
-                .willReturn(WireMock.aResponse()
-                        .withStatus(HttpStatus.OK.value())
-                        .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE)
-                        .withBodyFile("mock/openWeather/lat_0_lon_0_EARTH_24.45.json")));
-
-        final double expectedTemp = 24.45;
-        final String expectedCountry = null;
-        final String expectedCity = "Earth";
-
-        final OpenWeatherResponse actual = openWeather.getCityTemp(null, 0.0, 0.0);
-
-        Assert.assertEquals(expectedTemp, actual.getMainTemp(), 0);
-        Assert.assertEquals(expectedCountry, actual.getCountry());
-        Assert.assertEquals(expectedCity, actual.getCityname());
-    }
-
-    @Test
-    public void getCityInternalServerErrorTest() {
-        WireMock.stubFor(WireMock.get(WireMock.urlEqualTo("/weather?appid=test-key&units=metric&lat=9.9&lon=9.9"))
-                .willReturn(WireMock.aResponse()
-                        .withStatus(HttpStatus.INTERNAL_SERVER_ERROR.value())));
-
-        final String expectedMesage = "500 Server Error";
-
-        expectedException.expect(BaseException.class);
-        expectedException.expectMessage(expectedMesage);
-
-        openWeather.getCityTemp(null, 9.9, 9.9);
     }
 }
