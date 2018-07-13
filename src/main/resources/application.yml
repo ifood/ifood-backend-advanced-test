@@ -9,3 +9,6 @@ openWeather:
 spotify:
     playlistEndpoint: "https://api.spotify.com/v1/browse/categories/%s/playlists"
     tracksEndpoint: "https://api.spotify.com/v1/users/spotify/playlists/%s/tracks"
+
+cache:
+    evictTime: 60

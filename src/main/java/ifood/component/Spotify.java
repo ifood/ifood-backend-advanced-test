@@ -24,6 +24,8 @@ public class Spotify {
     private static final String COUNTRY_KEY = "country";
     private static final String AUTH_HEADER_KEY = "Authorization";
     private static final String AUTH_HEADER_TOKEN_FORMAT = "Bearer %s";
+    private static final String PLAYLIST_CACHE_KEY = "#root.methodName + '_' + #trackCategory + '_' + #country";
+    private static final String TRACKS_CACHE_KEY = "#root.methodName + '_' + #playlistId";
 
     private final RestTemplate restTemplate;
 
@@ -74,7 +76,7 @@ public class Spotify {
         return trackUriBuilder.build().toUri();
     }
 
-    @Cacheable(key = "#root.methodName + '_' + #trackCategory + '_' + #country")
+    @Cacheable(key = PLAYLIST_CACHE_KEY)
     public SpotifyPlaylistResponse getPlaylist(final TrackCategoryEnum trackCategory,
                                                final String country,
                                                final String token) {
@@ -91,7 +93,7 @@ public class Spotify {
         }
     }
 
-    @Cacheable(key = "#root.methodName + '_' + #playlistId")
+    @Cacheable(key = TRACKS_CACHE_KEY)
     public SpotifyTracksResponse getTracks(final String playlistId, final String token) {
         final URI uri = getSpotifyTracksUri(playlistId);
         try {

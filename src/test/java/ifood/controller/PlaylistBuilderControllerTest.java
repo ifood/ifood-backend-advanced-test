@@ -56,5 +56,5 @@ public class PlaylistBuilderControllerTest { /*extends MvcTest {
                 );
 
         verify(openWeather, times(1)).getCityTemp(eq(null), eq(10.0), eq(20.0));
-    }*/
+    }a*/
 }

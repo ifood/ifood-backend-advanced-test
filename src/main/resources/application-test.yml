@@ -5,3 +5,6 @@ openWeather:
 spotify:
     playlistEndpoint: "http://localhost:8089/spotify/%s/playlists"
     tracksEndpoint: "http://localhost:8089/spotify/playlists/%s/tracks"
+
+cache:
+    evictTime: 1

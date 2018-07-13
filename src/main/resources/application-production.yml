@@ -5,3 +5,6 @@ logging:
 openWeather:
     key: "06c177a3853d49b86557cca83cc2b877"
     endpoint: "http://api.openweathermap.org/data/2.5/weather"
+
+cache:
+    evictTime: 3600
