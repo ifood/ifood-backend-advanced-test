@@ -5,11 +5,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.core.env.AbstractEnvironment;
 
 import java.util.Optional;
 
 @SpringBootApplication
+@EnableCaching
 public class IfoodBackendAdvancedTest extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

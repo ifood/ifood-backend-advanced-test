@@ -9,6 +9,8 @@ import ifood.validator.CityValidator;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
@@ -18,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @Component
+@CacheConfig(cacheNames = {"OpenWeather"})
 public class OpenWeather {
 
     private static final String APPID_KEY = "appid";
@@ -53,6 +56,7 @@ public class OpenWeather {
                 : uriBuilder.queryParam(QUERY_KEY, cityname).build().toUri();
     }
 
+    @Cacheable
     public OpenWeatherResponse getCityTemp(final String cityname, final Double lat, final Double lon) {
         final URI uri = getWeatherUri(cityname, lat, lon);
         try {

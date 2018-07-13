@@ -4,10 +4,11 @@ import ifood.exception.*;
 import ifood.model.SpotifyPlaylistResponse;
 import ifood.model.SpotifyTracksResponse;
 import ifood.model.TrackCategoryEnum;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
@@ -17,7 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @Component
-@Slf4j
+@CacheConfig(cacheNames = {"Spotify"})
 public class Spotify {
 
     private static final String COUNTRY_KEY = "country";
@@ -73,6 +74,7 @@ public class Spotify {
         return trackUriBuilder.build().toUri();
     }
 
+    @Cacheable(key = "#root.methodName + '_' + #trackCategory + '_' + #country")
     public SpotifyPlaylistResponse getPlaylist(final TrackCategoryEnum trackCategory,
                                                final String country,
                                                final String token) {
@@ -83,21 +85,22 @@ public class Spotify {
 
             return response.getBody();
         } catch (HttpClientErrorException hcee) {
-            throw handleHttpClientError(hcee, new String[] { trackCategory.name(), country }, uri.toString());
+            throw handleHttpClientError(hcee, new String[]{trackCategory.name(), country}, uri.toString());
         } catch (Exception ex) {
             throw new BaseException(ex.getMessage(), ex, ExceptionOriginEnum.INTERNAL);
         }
     }
 
-    public SpotifyTracksResponse getTracks(final String playListId, final String token) {
-        final URI uri = getSpotifyTracksUri(playListId);
+    @Cacheable(key = "#root.methodName + '_' + #playlistId")
+    public SpotifyTracksResponse getTracks(final String playlistId, final String token) {
+        final URI uri = getSpotifyTracksUri(playlistId);
         try {
             ResponseEntity<SpotifyTracksResponse> response =
                     restTemplate.exchange(uri, HttpMethod.GET, createHttpHeader(token), SpotifyTracksResponse.class);
 
             return response.getBody();
         } catch (HttpClientErrorException hcee) {
-            throw handleHttpClientError(hcee, new String[] { playListId }, uri.toString());
+            throw handleHttpClientError(hcee, new String[]{playlistId}, uri.toString());
         } catch (Exception ex) {
             throw new BaseException(ex.getMessage(), ex, ExceptionOriginEnum.INTERNAL);
         }
