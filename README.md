@@ -21,9 +21,9 @@ Use whatever language, tools and frameworks you feel comfortable to, and briefly
 
 Also, make it easy to deploy/run your service(s) locally (consider using some container/vm solution for this). Once done, share your code with us.
 
-## Sobre o projeto
+# Sobre o projeto
 
-# Keywords de Tecnologias
+## Keywords de Tecnologia
 
 * Desenvolvimento: Java, Gradle, SpringBoot, IntelliJ, Lonbock, Cache (Spring) ...
 * Testes: JUnit, Wiremock, Mockito.
@@ -31,7 +31,9 @@ Also, make it easy to deploy/run your service(s) locally (consider using some co
 * Validação da cobertura de testes: Jacoco Reports.
 * Container: Docker.
 
-# Para executar o projeto (local)
+# Utilizando o projeto
+
+## Para executar (local)
 
 1. Na raíz do projeto execute `./gradlew bootRun.
 2. O projeto estará disponível em http://localhost:8080/
@@ -40,14 +42,18 @@ Also, make it easy to deploy/run your service(s) locally (consider using some co
 
 Para a documebntação dos endpoints a interface do Swagger estará disponível utilizando um navegador em http://localhost:8080/.
 
-# Para executar os testes
+## Para executar os testes
 
 1. Na raíz do projeto execute `./gradlew clean build`.
 2. Com todos os testes executados sem falhar, o relatório final dos testes estará disponível em "/build/reports/jacacoco/test/html/index.html".
 
-## Testando a API
+## Para gerar o container do Docker
 
-# Pré requisitos
+Na raíz do projeto execute `./gradlew clean build docker`.
+
+# Testando a API
+
+## Pré-requisitos
 
 Possuir um token válido do Spotify, devidamente autorizado para a aplicação:
 
@@ -56,7 +62,7 @@ Possuir um token válido do Spotify, devidamente autorizado para a aplicação:
 3. Você será redirecionado para uma página em https://example.com/ onde deverá copiar a queryString **access_token**.
 4. Pronto! esse é o seu **Spotify-Token** que deverá ser utilizado nos Headers dos próximos requests.
 
-# Buscando uma playlist por nome da cidade
+## Buscando uma playlist por nome da cidade
 
 Exemplo de requisição com a aplicação sendo executada local, na porta 8080:
 
@@ -66,8 +72,9 @@ curl -X GET \
   -H 'cache-control: no-cache' \
   -H 'postman-token: f2a18f88-d813-eac0-0fdb-0da977a5f1f6' \
   -H 'spotify-token: BQDD8tTGtn6sgOjFQpg-FaxTafkxtXAgHYXcZz1689kKrfSE4eC2q3pBfcCnYli7eeapN7lzZfMM2kTD9Tve8hIx0qqgTD0TFVwWJkPwuyzGm6JdkTzupfZ6ykcw4fZnsubNeJAGKMWDYHW9wCTzIwCC0N1suGd63SUFCQa7ihaZ5x4tqgnq0bOFDAqq'
+```
 
-# Buscando uma playlists por posição geográfica (latitude e lonfitude)
+## Buscando uma playlists por posição geográfica (latitude e lonfitude)
 
 Exemplo de requisição com a aplicação sendo executada local, na porta 8080:
 
@@ -77,8 +84,9 @@ curl -X GET \
   -H 'cache-control: no-cache' \
   -H 'postman-token: cfa79c9a-8285-c6b8-89a2-7a71008706e6' \
   -H 'spotify-token: BQDD8tTGtn6sgOjFQpg-FaxTafkxtXAgHYXcZz1689kKrfSE4eC2q3pBfcCnYli7eeapN7lzZfMM2kTD9Tve8hIx0qqgTD0TFVwWJkPwuyzGm6JdkTzupfZ6ykcw4fZnsubNeJAGKMWDYHW9wCTzIwCC0N1suGd63SUFCQa7ihaZ5x4tqgnq0bOFDAqq'
+```
 
-# Resposta
+## Resposta
 
 A API retorna objetos do tipo ifood.model.SpotifyTrackData.
 
@@ -125,8 +133,9 @@ Exemplo de resposta
         "name": "Rise"
     }
 ]
+```
 
-# Exemplo de erro
+## Exemplo de erro
 
 Os erros são tratados pelo ErrorHandlew e possuem sempre os campos origin, message e uri, representados pela classe ifood.model.PlaylistErrorReturn.
 
@@ -137,3 +146,4 @@ Exemplo:
     "message": "Dados não encontrados: [cityname:cidade invalida] [lat:null] [lon:null]",
     "uri": "/playlists/city/cidade%20invalida"
 }
+```
