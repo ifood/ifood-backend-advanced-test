@@ -8,3 +8,7 @@ spotify:
 
 cache:
     evictTime: 3600
+
+spring:
+    jackson:
+        property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy

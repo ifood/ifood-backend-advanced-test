@@ -8,7 +8,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class PlaylistErrorReturn {
 
-    private ExceptionOriginEnum errorOrigin;
+    private ExceptionOriginEnum origin;
 
     private String message;
 

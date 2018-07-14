@@ -73,7 +73,7 @@ public class PlaylistBuilderControllerTest extends MvcTest {
         when(service.getTracksByLocation("aaa", null, null, "test-token"))
                 .thenThrow(new InvalidCityException("aaa", null, null, new Exception("test")));
 
-        final String expected = "{\"errorOrigin\":\"OPEN_WEATHER_API\",\"message\":\"Dados não encontrados: [cityname:aaa] [lat:null] [lon:null]\",\"uri\":\"/playlists/city/aaa\"}";
+        final String expected = "{\"origin\":\"OPEN_WEATHER_API\",\"message\":\"Dados não encontrados: [cityname:aaa] [lat:null] [lon:null]\",\"uri\":\"/playlists/city/aaa\"}";
 
         mvc.perform(
                 MockMvcRequestBuilders
@@ -92,7 +92,7 @@ public class PlaylistBuilderControllerTest extends MvcTest {
         when(service.getTracksByLocation(null, -200.0, -200.0, "test-token"))
                 .thenThrow(new InvalidCityException("Valor de latitude inválido: [lat:-200.0]"));
 
-        final String expected = "{\"errorOrigin\":\"OPEN_WEATHER_API\",\"message\":\"Valor de latitude inválido: [lat:-200.0]\",\"uri\":\"/playlists/lat/-200.0/lon/-200.0\"}";
+        final String expected = "{\"origin\":\"OPEN_WEATHER_API\",\"message\":\"Valor de latitude inválido: [lat:-200.0]\",\"uri\":\"/playlists/lat/-200.0/lon/-200.0\"}";
 
         mvc.perform(
                 MockMvcRequestBuilders
@@ -111,7 +111,7 @@ public class PlaylistBuilderControllerTest extends MvcTest {
         when(service.getTracksByLocation("campinas", null, null, "invalid-token"))
                 .thenThrow(new SpotifyUnnauthorizedException(new Exception("invalid token")));
 
-        final String expected = "{\"errorOrigin\":\"SPOTIFY_APY\",\"message\":\"Acesso não autorizado (verifique o token de acesso). Mensagem original: [invalid token]\",\"uri\":\"/playlists/city/campinas\"}";
+        final String expected = "{\"origin\":\"SPOTIFY_APY\",\"message\":\"Acesso não autorizado (verifique o token de acesso). Mensagem original: [invalid token]\",\"uri\":\"/playlists/city/campinas\"}";
 
         mvc.perform(
                 MockMvcRequestBuilders
@@ -130,7 +130,7 @@ public class PlaylistBuilderControllerTest extends MvcTest {
         when(service.getTracksByLocation("campinas", null, null, "token-token"))
                 .thenThrow(new BaseException("internal error", new Exception("error"), ExceptionOriginEnum.INTERNAL));
 
-        final String expected = "{\"errorOrigin\":\"INTERNAL\",\"message\":\"internal error\",\"uri\":\"/playlists/city/campinas\"}";
+        final String expected = "{\"origin\":\"INTERNAL\",\"message\":\"internal error\",\"uri\":\"/playlists/city/campinas\"}";
 
         mvc.perform(
                 MockMvcRequestBuilders
@@ -149,7 +149,7 @@ public class PlaylistBuilderControllerTest extends MvcTest {
         when(service.getTracksByLocation("campinas", null, null, "token-token"))
                 .thenThrow(new RuntimeException("", new Exception("")));
 
-        final String expected = "{\"errorOrigin\":\"INTERNAL\",\"message\":\"Internal server error.\",\"uri\":\"/playlists/city/campinas\"}";
+        final String expected = "{\"origin\":\"INTERNAL\",\"message\":\"Internal server error.\",\"uri\":\"/playlists/city/campinas\"}";
 
         mvc.perform(
                 MockMvcRequestBuilders
