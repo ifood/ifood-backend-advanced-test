@@ -1,0 +1,46 @@
+{
+  "playlists": {
+    "href": "https://api.spotify.com/v1/browse/categories/classical/playlists?country=BR&offset=0&limit=20",
+    "items": [
+      {
+        "collaborative": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DWV0gynK7G6pD"
+        },
+        "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DWV0gynK7G6pD",
+        "id": "37i9dQZF1DWV0gynK7G6pD",
+        "images": [
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/39f0f454766c7b03cf1f5e572b17e029dc0e467b",
+            "width": 300
+          }
+        ],
+        "name": "Classical New Releases: Spotify Picks",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "public": null,
+        "snapshot_id": "wh17O6DdTlTeiI0NbgJ9+t2SkgttnOmHe42vSauykH1CwQr++tMzfB6DIQYRFAy8Lls5NACknEg=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DWV0gynK7G6pD/tracks",
+          "total": 50
+        },
+        "type": "playlist",
+        "uri": "spotify:user:spotify:playlist:37i9dQZF1DWV0gynK7G6pD"
+      }
+    ],
+    "limit": 20,
+    "next": "https://api.spotify.com/v1/browse/categories/classical/playlists?country=BR&offset=20&limit=20",
+    "offset": 0,
+    "previous": null,
+    "total": 1
+  }
+}

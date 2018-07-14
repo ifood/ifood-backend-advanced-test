@@ -1,0 +1,80 @@
+{
+  "playlists": {
+    "href": "https://api.spotify.com/v1/browse/categories/party/playlists?offset=0&limit=20",
+    "items": [
+      {
+        "collaborative": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DX8mBRYewE6or"
+        },
+        "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DX8mBRYewE6or",
+        "id": "37i9dQZF1DX8mBRYewE6or",
+        "images": [
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/f78dc9bec27b1ff0a166340a33cd958c0bc0b3ad",
+            "width": 300
+          }
+        ],
+        "name": "Sexta",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "public": null,
+        "snapshot_id": "SalizK81SrKN/pmJhLrxQHuVmlWHTcLZJDy46mQeyF4e9GarFovtE6S+OOo2uB5wrdQCzz9sa44=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DX8mBRYewE6or/tracks",
+          "total": 60
+        },
+        "type": "playlist",
+        "uri": "spotify:user:spotify:playlist:37i9dQZF1DX8mBRYewE6or"
+      },
+      {
+        "collaborative": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/spotify/playlist/37i9dQZF1DWXYz7MGRnPtc"
+        },
+        "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DWXYz7MGRnPtc",
+        "id": "37i9dQZF1DWXYz7MGRnPtc",
+        "images": [
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/db615f2e9ba7305c754ad675871f5ebbabdd139f",
+            "width": 300
+          }
+        ],
+        "name": "Festa de Casamento",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "public": null,
+        "snapshot_id": "qXjynmJbeq0/1xhU0V2CAt31YS9BycBB1Z+qiElxOjQj88EnWApBOB84c32D+bu2a4l7eFL4Veg=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/users/spotify/playlists/37i9dQZF1DWXYz7MGRnPtc/tracks",
+          "total": 49
+        },
+        "type": "playlist",
+        "uri": "spotify:user:spotify:playlist:37i9dQZF1DWXYz7MGRnPtc"
+      }
+    ],
+    "limit": 20,
+    "next": "https://api.spotify.com/v1/browse/categories/party/playlists?offset=20&limit=20",
+    "offset": 0,
+    "previous": null,
+    "total": 2
+  }
+}

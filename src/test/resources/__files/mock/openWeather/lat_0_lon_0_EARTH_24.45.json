@@ -1,0 +1,40 @@
+{
+  "coord": {
+    "lon": 0,
+    "lat": 0
+  },
+  "weather": [
+    {
+      "id": 804,
+      "main": "Clouds",
+      "description": "overcast clouds",
+      "icon": "04n"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 24.45,
+    "pressure": 1029.59,
+    "humidity": 100,
+    "temp_min": 24.45,
+    "temp_max": 24.45,
+    "sea_level": 1029.61,
+    "grnd_level": 1029.59
+  },
+  "wind": {
+    "speed": 5.21,
+    "deg": 182
+  },
+  "clouds": {
+    "all": 88
+  },
+  "dt": 1531440291,
+  "sys": {
+    "message": 0.068,
+    "sunrise": 1531461729,
+    "sunset": 1531505363
+  },
+  "id": 6295630,
+  "name": "Earth",
+  "cod": 200
+}
