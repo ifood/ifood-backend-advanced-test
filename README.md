@@ -38,7 +38,7 @@ Also, make it easy to deploy/run your service(s) locally (consider using some co
 1. Na raíz do projeto execute `./gradlew bootRun.
 2. O projeto estará disponível em http://localhost:8080/
 
-# Para visualizar a documentação dos endpoints
+## Para visualizar a documentação dos endpoints
 
 Para a documebntação dos endpoints a interface do Swagger estará disponível utilizando um navegador em http://localhost:8080/.
 
