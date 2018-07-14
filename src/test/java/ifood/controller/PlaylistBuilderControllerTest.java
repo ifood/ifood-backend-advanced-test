@@ -1,60 +1,164 @@
 package ifood.controller;
 
-import ifood.component.OpenWeather;
 import ifood.config.MvcTest;
-import ifood.model.OpenWeatherResponse;
+import ifood.exception.BaseException;
+import ifood.exception.ExceptionOriginEnum;
+import ifood.exception.InvalidCityException;
+import ifood.exception.SpotifyUnnauthorizedException;
+import ifood.model.SpotifyTrackData;
+import ifood.service.PlaylistBuilderService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class PlaylistBuilderControllerTest { /*extends MvcTest {
+public class PlaylistBuilderControllerTest extends MvcTest {
 
     @MockBean
-    private OpenWeather openWeather;
+    private PlaylistBuilderService service;
 
     @Test
-    public void successCitynameMvcTest() throws Exception {
+    public void successGetTracksByCity() throws Exception {
 
-        when(openWeather.getCityTemp("campinas", null, null))
-                .thenReturn(new OpenWeatherResponse("Campinas", 25.0, "BR"));
+        final List<SpotifyTrackData> tracksMock = new ArrayList<>();
+        tracksMock.add(new SpotifyTrackData("test 1"));
 
-        final String expected = "{\"cityname\":\"Campinas\",\"temp\":25.0,\"country\":\"BR\"}";
+        when(service.getTracksByLocation("campinas", null, null, "test-token"))
+                .thenReturn(tracksMock);
+
+        final String expected = "[{\"name\":\"test 1\"}]";
 
         mvc.perform(
                 MockMvcRequestBuilders
-                        .get("/weather?cityname=campinas&appid=testkey&units=metric")
+                        .get("/playlists/city/campinas")
+                        .header("Spotify-Token", "test-token")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andDo(result ->
-                        Assert.assertEquals(expected, result.getResponse().getContentAsString())
+                .andDo(actual ->
+                        Assert.assertEquals(expected, actual.getResponse().getContentAsString())
                 );
-
-        verify(openWeather, times(1)).getCityTemp(eq("campinas"), eq(null), eq(null));
     }
 
     @Test
-    public void successGeoMvcTest() throws Exception {
+    public void successGetTracksByGeo() throws Exception {
 
-        when(openWeather.getCityTemp(null, 10.0, 20.0))
-                .thenReturn(new OpenWeatherResponse("Sorocaba", 15.0, "BR"));
+        final List<SpotifyTrackData> tracksMock = new ArrayList<>();
+        tracksMock.add(new SpotifyTrackData("test 1"));
+        when(service.getTracksByLocation(null, -22.91, -47.00, "test-token"))
+                .thenReturn(tracksMock);
 
-        final String expected = "{\"cityname\":\"Sorocaba\",\"temp\":15.0,\"country\":\"BR\"}";
+        final String expected = "[{\"name\":\"test 1\"}]";
 
         mvc.perform(
                 MockMvcRequestBuilders
-                        .get("/weather?lat=10&lon=20&appid=testkey&units=metric")
+                        .get("/playlists/lat/-22.91/lon/-47.00")
+                        .header("Spotify-Token", "test-token")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andDo(result ->
-                        Assert.assertEquals(expected, result.getResponse().getContentAsString())
+                .andDo(actual ->
+                        Assert.assertEquals(expected, actual.getResponse().getContentAsString())
                 );
+    }
 
-        verify(openWeather, times(1)).getCityTemp(eq(null), eq(10.0), eq(20.0));
-    }a*/
+    @Test
+    public void failGetTracksByCityNotFound() throws Exception {
+
+        when(service.getTracksByLocation("aaa", null, null, "test-token"))
+                .thenThrow(new InvalidCityException("aaa", null, null, new Exception("test")));
+
+        final String expected = "{\"errorOrigin\":\"OPEN_WEATHER_API\",\"message\":\"Dados não encontrados: [cityname:aaa] [lat:null] [lon:null]\",\"uri\":\"/playlists/city/aaa\"}";
+
+        mvc.perform(
+                MockMvcRequestBuilders
+                        .get("/playlists/city/aaa")
+                        .header("Spotify-Token", "test-token")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is4xxClientError())
+                .andDo(actual ->
+                        Assert.assertEquals(expected, actual.getResponse().getContentAsString())
+                );
+    }
+
+    @Test
+    public void failGetTracksByInvalidGeo() throws Exception {
+
+        when(service.getTracksByLocation(null, -200.0, -200.0, "test-token"))
+                .thenThrow(new InvalidCityException("Valor de latitude inválido: [lat:-200.0]"));
+
+        final String expected = "{\"errorOrigin\":\"OPEN_WEATHER_API\",\"message\":\"Valor de latitude inválido: [lat:-200.0]\",\"uri\":\"/playlists/lat/-200.0/lon/-200.0\"}";
+
+        mvc.perform(
+                MockMvcRequestBuilders
+                        .get("/playlists/lat/-200.0/lon/-200.0")
+                        .header("Spotify-Token", "test-token")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is4xxClientError())
+                .andDo(actual ->
+                        Assert.assertEquals(expected, actual.getResponse().getContentAsString())
+                );
+    }
+
+    @Test
+    public void failGetTracksInvalidToken() throws Exception {
+
+        when(service.getTracksByLocation("campinas", null, null, "invalid-token"))
+                .thenThrow(new SpotifyUnnauthorizedException(new Exception("invalid token")));
+
+        final String expected = "{\"errorOrigin\":\"SPOTIFY_APY\",\"message\":\"Acesso não autorizado (verifique o token de acesso). Mensagem original: [invalid token]\",\"uri\":\"/playlists/city/campinas\"}";
+
+        mvc.perform(
+                MockMvcRequestBuilders
+                        .get("/playlists/city/campinas")
+                        .header("Spotify-Token", "invalid-token")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isUnauthorized())
+                .andDo(actual ->
+                        Assert.assertEquals(expected, actual.getResponse().getContentAsString())
+                );
+    }
+
+    @Test
+    public void failGetTracksInternalBaseError() throws Exception {
+
+        when(service.getTracksByLocation("campinas", null, null, "token-token"))
+                .thenThrow(new BaseException("internal error", new Exception("error"), ExceptionOriginEnum.INTERNAL));
+
+        final String expected = "{\"errorOrigin\":\"INTERNAL\",\"message\":\"internal error\",\"uri\":\"/playlists/city/campinas\"}";
+
+        mvc.perform(
+                MockMvcRequestBuilders
+                        .get("/playlists/city/campinas")
+                        .header("Spotify-Token", "token-token")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is5xxServerError())
+                .andDo(actual ->
+                        Assert.assertEquals(expected, actual.getResponse().getContentAsString())
+                );
+    }
+
+    @Test
+    public void failGetTracksInternalServerError() throws Exception {
+
+        when(service.getTracksByLocation("campinas", null, null, "token-token"))
+                .thenThrow(new RuntimeException("", new Exception("")));
+
+        final String expected = "{\"errorOrigin\":\"INTERNAL\",\"message\":\"Internal server error.\",\"uri\":\"/playlists/city/campinas\"}";
+
+        mvc.perform(
+                MockMvcRequestBuilders
+                        .get("/playlists/city/campinas")
+                        .header("Spotify-Token", "token-token")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is5xxServerError())
+                .andDo(actual ->
+                        Assert.assertEquals(expected, actual.getResponse().getContentAsString())
+                );
+    }
 }

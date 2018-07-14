@@ -147,8 +147,6 @@ public class PlaylistBuilderServiceTest extends BaseTest {
         Assert.assertEquals(expectedTrackName[4], actual.get(4).getName());
     }
 
-    // TODO: validar se casos de exceção devem ser levados para o teste do controller
-
     @Test
     public void failGettingTempByCityTest() {
         when(openWeather.getCityTemp("campinas", null, null))
