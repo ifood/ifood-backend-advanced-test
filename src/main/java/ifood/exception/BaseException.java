@@ -15,12 +15,12 @@ public class BaseException extends RuntimeException {
     public BaseException(final String message, final Throwable cause, final ExceptionOriginEnum origin) {
         super(message, cause);
         this.origin = origin;
-        log.info(message);
+        log.debug(message);
     }
 
     public BaseException(final String message, final ExceptionOriginEnum origin) {
         super(message);
         this.origin = origin;
-        log.info(message);
+        log.debug(message);
     }
 }
