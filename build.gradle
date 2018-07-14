@@ -1,8 +1,4 @@
 buildscript {
-    ext {
-        springBootVersion = '1.5.8.RELEASE'
-        dockerVersion = '0.13.0'
-    }
     repositories {
         mavenCentral()
         maven {
@@ -10,8 +6,8 @@ buildscript {
         }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("gradle.plugin.com.palantir.gradle.docker:gradle-docker:${dockerVersion}")
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE')
+        classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
     }
 }
 
@@ -60,7 +56,8 @@ jacocoTestReport {
             fileTree(dir: it, exclude: [
                 'ifood/IfoodBackendAdvancedTest.class',
                 'ifood/config/*.class',
-                'ifood/utils/WiremockStarter.class'
+                'ifood/utils/WiremockStarter.class',
+                'ifood/controller/MainController.class'
             ])
         })
     }
