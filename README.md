@@ -23,6 +23,15 @@ Also, make it easy to deploy/run your service(s) locally (consider using some co
 
 # Sobre o projeto
 
+## Resumo (caminho feliz)
+
+A partir de um token do Spotify e nome de uma cidade ou dados geográficos (latitude e longitude).
+Operações da API
+* Busca dados de clima (OpenWeather).
+* Com as informações de cidade e país recebidas (OpenWeather) busca playlists no Spotify por gênero de acordo com a regra fornecida.
+* Das playlists recuperadas, esolhe uma aleatoriamente.
+* Busca faixas da playlist selecionada no Spotify.
+
 ## Keywords de Tecnologia
 
 * Desenvolvimento: Java, Gradle, SpringBoot, IntelliJ, Lonbock, Cache (Spring) ...
