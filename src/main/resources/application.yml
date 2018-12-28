@@ -1,0 +1,15 @@
+spotify:
+  oauth2:
+    url: https://accounts.spotify.com/api/token
+    clientId: 5e654cf945dd42bc8f16ba1decb0a0d9
+    clientSecret: c4bb917f688c464895a0f9bf54209366
+  service:
+    name: spotifyService
+    url: https://api.spotify.com/v1
+
+openweather:
+  auth:
+    appId: b08f89500c9b6bbe6d877fe1bc962149
+  service:
+    name: openWeatherService
+    url: http://api.openweathermap.org/data/2.5
