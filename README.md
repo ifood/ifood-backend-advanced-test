@@ -20,3 +20,19 @@ As this service will be a worldwide success, it must be prepared to be fault tol
 Use whatever language, tools and frameworks you feel comfortable to, and briefly elaborate on your solution, architecture details, choice of patterns and frameworks.
 
 Also, make it easy to deploy/run your service(s) locally (consider using some container/vm solution for this). Once done, share your code with us.
+
+## Stack
+
+* Java 8
+* Spring Boot
+* JUnit (for testing purposes)
+* Mockito (for testing purposes)
+* Guava (for caching purposes)
+
+### Considerations
+* I don't have enough knowledge dealing with Docker. Based on that, I didn't provide an image in order to run the project.
+Sorry about that!
+* As I'm running late, the client ids where not externalized to the application.resources file. In fact, they where but I haven't created the class to retrieve them. Oops! 
+* In order to run the program and do the calls to the apis (spotify and openweather), it is required to update the following classes:
+    * **SpotifyServiceImpl** (**the attributes which have a REPLACE_TOKEN_HERE**).
+    * **TemperatureServiceImpl** (**the attributes which have a REPLACE_TOKEN_HERE**).
