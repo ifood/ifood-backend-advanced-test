@@ -4,6 +4,7 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+*.iml
 
 # Generated files
 .idea/**/contentModel.xml
@@ -18,6 +19,7 @@
 .idea/**/dbnavigator.xml
 
 # Gradle
+.gradle
 .idea/**/gradle.xml
 .idea/**/libraries
 
@@ -25,6 +27,10 @@
 # When using Gradle or Maven with auto-import, you should exclude module files,
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
-# .idea/modules.xml
-# .idea/*.iml
-# .idea/modules
+.idea/modules.xml
+.idea/*.iml
+.idea/modules
+
+# Project Folders
+.idea
+out
