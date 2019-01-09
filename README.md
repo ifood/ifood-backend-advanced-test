@@ -1,22 +1,24 @@
-# iFood Backend Advanced Test
+# iMood - Moods for any weather
 
-Create a micro-service able to accept RESTful requests receiving as parameter either city name or lat long coordinates and returns a playlist (only track names is fine) suggestion according to the current temperature.
+**iMood** is a service able to accept RESTful requests receiving as parameter either city or coordinates (latitude, longitude) and returns you a playlist according to the current temperature of that location, guaranteeing you songs that match the mood of the weather!
 
-## Business rules
+## Running
 
-* If temperature (celcius) is above 30 degrees, suggest tracks for party
-* In case temperature is between 15 and 30 degrees, suggest pop music tracks
-* If it's a bit chilly (between 10 and 14 degrees), suggest rock music tracks
-* Otherwise, if it's freezing outside, suggests classical music tracks 
+### .jar file
+In the docker folder, you'll find the _file imood.jar_.
+You may run the command `java -jar imood.jar` in that folder to start the application.
 
-## Hints
+### docker-compose
+If you have docker-compose installed, in the docker folder you can just run the command `docker-compose up` to create a docker container and start the application.
 
-You can make usage of OpenWeatherMaps API (https://openweathermap.org) to fetch temperature data and Spotify (https://developer.spotify.com) to suggest the tracks as part of the playlist.
+## End-Points
 
-## Non functional requirements
+The application starts up on _port 8080_.
 
-As this service will be a worldwide success, it must be prepared to be fault tolerant, responsive and resilient.
+* Request `localhost:8080/mood/{city_name}` to get a playlist according to the city especified.
+* Request `localhost:8080/mood/{latitude}/{longitude}` to get a playlist according to the city coordinates.
 
-Use whatever language, tools and frameworks you feel comfortable to, and briefly elaborate on your solution, architecture details, choice of patterns and frameworks.
+## Details
 
-Also, make it easy to deploy/run your service(s) locally (consider using some container/vm solution for this). Once done, share your code with us.
+The weather information was gathered using the *OpenWeather API* (https://openweathermap.org) and the songs where fetched from *Spotify API* (https://developer.spotify.com/documentation/web-api).
+The project uses maven and was built using primarily SpringBoot and SpringMVC. SpringCloud was used as well for the OAuth2 authentication (requested by Spotify) and the declarative syntax for REST clients (Feign). Lombok was also used to simplify Getters, Setters and Constructors writing.
