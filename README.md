@@ -21,49 +21,85 @@ Use whatever language, tools and frameworks you feel comfortable to, and briefly
 
 Also, make it easy to deploy/run your service(s) locally (consider using some container/vm solution for this). Once done, share your code with us.
 
-========================================================================================================================
-
-##Solución
-Las herramientas de trabajo que se usaron fueron las siguientes:
+________________________________________________________________________________________________________________________
 
 
-*Spring Boot: Se utilizo para realizar los microservicios:
-*spotify-web-api-java
-
-La api contiene solo dos URL´S  :
-
-La primera es para poner cualquier lugar que se desee.
-http://localhost:8080/api/tracks/place
-
-Puede ser invocada desde cualquier herramienta que pueda lanzar peticiones como curl
-
-Ejemplo:
-
-curl -X POST --header "Content-Type: application/json" --header "Accept: */*" -d "{  \"lat\": 90, \"lon\": -90}" "http://localhost:8080/api/tracks/coord"
-
-La Respuesta será la siguiente:
-
-[
-  "Ständchen, S. 560 (Trans. from Schwanengesang No. 4, D. 957)",
-  "Partita for Violin Solo No.2 in D Minor, BWV 1004: 4. Gigue (Arr. for Mandolin by Avi Avital)",
-  "Variation XVIII - Andante cantabile",
-  "Shostakovich: Piano Quintet in G Minor, Op. 57: III. Scherzo. Allegretto",
-  "Roll Over Beethoven: I. Allegro molto",
-  "Piano Concerto No. 3 in C Major, Op. 26: I. Andante. Allegro - Live",
-  "Piano Trio No. 1, Op. 49: III. Scherzo. Leggiero e vivace",
-  "Ellis Island (feat. Simone Dinnerstein)",
-  "Offenbach: Grand Concerto for Cello in G Major, \"Concerto Militaire\": II. Andante",
-  "Concerto No. 4 in E-Flat Major, K.495: III. Rondo. Allegro Vivace"
-]
+#Solution
+The work tools that were used are the following:
 
 
-La segunda es para poner las coordenadas del lugar
-http://localhost:8080/api/tracks/coord
+* spring-boot: Development framework used to do dependency injection.
+* spring-mvc: The Spring Web MVC framework provides Model-View-Controller (MVC) architecture and ready components that can be used to develop flexible and loosely coupled web applications.
+* spotify-web-api-java: Used to manage Spotify microservices
+* springfox-swagger2: It is used to test the services Rest of the application.
+* lombok: Utilities library to make POJO'S among other things
 
-Ejemplo:
-curl -X POST --header "Content-Type: application/json" --header "Accept: */*" -d "Polanco" "http://localhost:8080/api/tracks/place"
 
-[
+
+The class diagram used to resolve the problem is shown below.
+![images](IFood.jpg)
+
+
+###Start the application
+
+First you must compile the project with Maven as follows:
+
+```
+mvn clean install
+```
+
+Once compiled the application will generate the file **test-0.0.1-SNAPSHOT.jar** and to run the application is done the 
+following form, will run on the port 8080:
+
+```
+java -jar test-0.0.1-SNAPSHOT.jar
+```
+
+
+
+###The API contains two Get-type Rest Services
+
+
+* The first API is to put any place you want and with respect to the place will suggest with respect to the temperature a 
+playlist of music.
+>http://localhost:8080/api/tracks/place
+
+    Can be invoked as shown:
+
+>Example:
+
+>curl -X POST --header "Content-Type: application/json" --header "Accept: */*" -d "Polanco" "http://localhost:8080/api/tracks/place"
+
+
+    The answer will be as follows:
+
+>[
+   "Deberías Estar Aquí",
+   "Te Esperé",
+   "Si Tú Te Vas",
+   "Te Confieso",
+   "Baby Girl (feat. Lalo Ebratt)",
+   "Ráptame",
+   "La solución (feat. Carlos Rivera)",
+   "Contigo Siempre",
+   "Te Equivocaste (Primera Fila) - En Vivo",
+   "Dime (feat. Reik)"
+ >]
+
+
+* The second is to put the any coordinates of the place you want and with respect to the place will suggest with respect 
+to the temperature a playlist of music.
+
+>http://localhost:8080/api/tracks/coord
+
+    Can be invoked as shown:
+
+>Example:
+>curl -X POST --header "Content-Type: application/json" --header "Accept: */*" -d "Polanco" "http://localhost:8080/api/tracks/place"
+
+    The answer will be as follows:
+    
+>[
   "Deberías Estar Aquí",
   "Te Esperé",
   "Si Tú Te Vas",
@@ -74,5 +110,5 @@ curl -X POST --header "Content-Type: application/json" --header "Accept: */*" -d
   "Contigo Siempre",
   "Te Equivocaste (Primera Fila) - En Vivo",
   "Dime (feat. Reik)"
-]
+>]
 

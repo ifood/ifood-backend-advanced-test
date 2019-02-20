@@ -2,6 +2,7 @@ package com.ifood.test.service.impl;
 
 import com.ifood.test.dto.Coord;
 import com.ifood.test.dto.Place;
+import com.ifood.test.service.TracksByWheater;
 import com.ifood.test.service.TracksWheatherSpotifyService;
 import com.ifood.test.service.WeatherService;
 import com.ifood.test.service.WheatherTracks;
@@ -16,7 +17,7 @@ public class TracksWheatherSpotifyServiceImpl implements TracksWheatherSpotifySe
     @Autowired
     private WeatherService weatherService;
 
-    private WheatherTracks wheatherTracks;
+    private TracksByWheater tracksByWheater;
 
 
     @Override
@@ -38,15 +39,15 @@ public class TracksWheatherSpotifyServiceImpl implements TracksWheatherSpotifySe
 
     private List<String> evaluateTemperature(Double temperature) {
         if (temperature > 30) {
-            wheatherTracks = WheatherTracks.PARTY;
+            tracksByWheater = WheatherTracks.PARTY;
         } else if (temperature > 15 && temperature < 30) {
-            wheatherTracks = WheatherTracks.POP;
+            tracksByWheater = WheatherTracks.POP;
         } else if (temperature > 10 && temperature < 14) {
-            wheatherTracks = WheatherTracks.ROCK;
+            tracksByWheater = WheatherTracks.ROCK;
         } else if (temperature < 14) {
-            wheatherTracks = WheatherTracks.CLASSICAL;
+            tracksByWheater = WheatherTracks.CLASSICAL;
         }
-        return wheatherTracks.getTracksByWhether();
+        return tracksByWheater.getTracksByWhether();
     }
 
 
