@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.ifood.test.service.impl.SpotifyServiceImpl</OriginalElement>
+  <nodes>
+    <node x="640.2616666666665" y="278.5">com.ifood.test.service.TracksByWheater</node>
+    <node x="200.67833333333328" y="458.0">com.ifood.test.service.TracksWheatherSpotifyService</node>
+    <node x="880.2616666666665" y="458.0">com.ifood.test.service.WeatherService</node>
+    <node x="356.39166666666665" y="55.5">com.ifood.test.service.SpotifyService</node>
+    <node x="0.0" y="614.0">com.ifood.test.controller.WheatherTracksController</node>
+    <node x="564.4516666666666" y="436.0">com.ifood.test.service.WheatherTracks</node>
+    <node x="926.7966666666666" y="223.0">com.ifood.test.dto.Place</node>
+    <node x="0.0" y="822.0">com.ifood.test.controller.RestResponseEntityExceptionHandler</node>
+    <node x="615.5766666666666" y="625.0">com.ifood.test.service.impl.TracksWheatherSpotifyServiceImpl</node>
+    <node x="776.8866666666665" y="0.0">com.ifood.test.dto.Coord</node>
+    <node x="1002.75" y="647.0">com.ifood.test.service.impl.WeatherServiceImpl</node>
+    <node x="362.26166666666654" y="278.5">com.ifood.test.service.impl.SpotifyServiceImpl</node>
+    <node x="1002.0116666666665" y="11.0">com.ifood.test.dto.Weather</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.ifood.test.service.WeatherService" target="com.ifood.test.dto.Place">
+      <point x="58.25" y="-37.0" />
+      <point x="1055.0116666666665" y="416.0" />
+      <point x="1028.7966666666666" y="416.0" />
+      <point x="0.0" y="81.5" />
+    </edge>
+    <edge source="com.ifood.test.controller.WheatherTracksController" target="com.ifood.test.dto.Coord">
+      <point x="0.0" y="-81.5" />
+      <point x="175.72500000000002" y="193.0" />
+      <point x="793.8866666666665" y="193.0" />
+      <point x="-85.0" y="81.5" />
+    </edge>
+    <edge source="com.ifood.test.service.WeatherService" target="com.ifood.test.dto.Coord">
+      <point x="-58.25" y="-37.0" />
+      <point x="938.5116666666665" y="406.0" />
+      <point x="905.3266666666666" y="406.0" />
+      <point x="905.3266666666666" y="203.0" />
+      <point x="895.8866666666665" y="203.0" />
+      <point x="17.0" y="81.5" />
+    </edge>
+    <edge source="com.ifood.test.service.TracksWheatherSpotifyService" target="com.ifood.test.dto.Coord">
+      <point x="0.0" y="-37.0" />
+      <point x="333.6783333333333" y="203.0" />
+      <point x="827.8866666666665" y="203.0" />
+      <point x="-51.0" y="81.5" />
+    </edge>
+    <edge source="com.ifood.test.service.WheatherTracks" target="com.ifood.test.service.SpotifyService">
+      <point x="0.0" y="-59.0" />
+      <point x="630.9516666666666" y="416.0" />
+      <point x="629.7616666666665" y="416.0" />
+      <point x="629.7616666666665" y="183.0" />
+      <point x="570.5583333333334" y="183.0" />
+      <point x="85.66666666666669" y="26.0" />
+    </edge>
+    <edge source="com.ifood.test.controller.WheatherTracksController" target="com.ifood.test.service.SpotifyService">
+      <point x="-117.33333333333326" y="-81.5" />
+      <point x="58.66666666666674" y="594.0" />
+      <point x="111.83333333333326" y="594.0" />
+      <point x="111.83333333333326" y="183.0" />
+      <point x="399.22499999999997" y="183.0" />
+      <point x="-85.66666666666669" y="26.0" />
+    </edge>
+    <edge source="com.ifood.test.service.WheatherTracks" target="com.ifood.test.service.impl.SpotifyServiceImpl">
+      <point x="-44.33333333333334" y="-59.0" />
+      <point x="586.6183333333332" y="416.0" />
+      <point x="490.76166666666654" y="416.0" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="com.ifood.test.dto.Place" target="com.ifood.test.dto.Coord">
+      <point x="-51.0" y="-81.5" />
+      <point x="977.7966666666666" y="203.0" />
+      <point x="929.8866666666665" y="203.0" />
+      <point x="51.0" y="81.5" />
+    </edge>
+    <edge source="com.ifood.test.controller.WheatherTracksController" target="com.ifood.test.service.TracksWheatherSpotifyService">
+      <point x="117.33333333333337" y="-81.5" />
+      <point x="293.33333333333337" y="594.0" />
+      <point x="267.1783333333333" y="594.0" />
+      <point x="-66.5" y="37.0" />
+    </edge>
+    <edge source="com.ifood.test.dto.Place" target="com.ifood.test.dto.Weather">
+      <point x="51.0" y="-81.5" />
+      <point x="1079.7966666666666" y="203.0" />
+      <point x="1104.0116666666665" y="203.0" />
+      <point x="0.0" y="70.5" />
+    </edge>
+    <edge source="com.ifood.test.service.impl.TracksWheatherSpotifyServiceImpl" target="com.ifood.test.service.WeatherService">
+      <point x="122.08333333333326" y="-70.5" />
+      <point x="884.1599999999999" y="594.0" />
+      <point x="938.5116666666665" y="594.0" />
+      <point x="-58.25" y="37.0" />
+    </edge>
+    <edge source="com.ifood.test.service.WheatherTracks" target="com.ifood.test.service.TracksByWheater">
+      <point x="44.33333333333334" y="-59.0" />
+      <point x="675.285" y="416.0" />
+      <point x="744.2616666666665" y="416.0" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="com.ifood.test.service.impl.TracksWheatherSpotifyServiceImpl" target="com.ifood.test.service.WheatherTracks">
+      <point x="-24.416666666666742" y="-70.5" />
+      <point x="737.6599999999999" y="574.0" />
+      <point x="664.2016666666666" y="574.0" />
+      <point x="33.25" y="59.0" />
+    </edge>
+    <edge source="com.ifood.test.service.impl.TracksWheatherSpotifyServiceImpl" target="com.ifood.test.service.TracksWheatherSpotifyService">
+      <point x="-122.08333333333337" y="-70.5" />
+      <point x="639.9933333333333" y="594.0" />
+      <point x="400.1783333333333" y="594.0" />
+      <point x="66.5" y="37.0" />
+    </edge>
+    <edge source="com.ifood.test.service.impl.TracksWheatherSpotifyServiceImpl" target="com.ifood.test.dto.Coord">
+      <point x="24.41666666666663" y="-70.5" />
+      <point x="786.4933333333333" y="584.0" />
+      <point x="858.7616666666665" y="584.0" />
+      <point x="858.7616666666665" y="203.0" />
+      <point x="861.8866666666665" y="203.0" />
+      <point x="-17.0" y="81.5" />
+    </edge>
+    <edge source="com.ifood.test.service.impl.WeatherServiceImpl" target="com.ifood.test.service.WeatherService">
+      <point x="-77.66666666666674" y="-48.5" />
+      <point x="1041.5833333333333" y="594.0" />
+      <point x="1055.0116666666665" y="594.0" />
+      <point x="58.25" y="37.0" />
+    </edge>
+    <edge source="com.ifood.test.service.impl.SpotifyServiceImpl" target="com.ifood.test.service.SpotifyService">
+      <point x="0.0" y="-26.0" />
+      <point x="490.76166666666654" y="183.0" />
+      <point x="484.89166666666665" y="183.0" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="com.ifood.test.service.impl.WeatherServiceImpl" target="com.ifood.test.dto.Coord">
+      <point x="77.6666666666668" y="-48.5" />
+      <point x="1196.9166666666667" y="594.0" />
+      <point x="1170.3033333333333" y="594.0" />
+      <point x="1170.3033333333333" y="193.0" />
+      <point x="963.8866666666665" y="193.0" />
+      <point x="84.99999999999997" y="81.5" />
+    </edge>
+    <edge source="com.ifood.test.service.impl.TracksWheatherSpotifyServiceImpl" target="com.ifood.test.dto.Place">
+      <point x="73.25" y="-70.5" />
+      <point x="835.3266666666666" y="594.0" />
+      <point x="869.7616666666665" y="594.0" />
+      <point x="869.7616666666665" y="416.0" />
+      <point x="960.7966666666666" y="416.0" />
+      <point x="-68.0" y="81.5" />
+    </edge>
+    <edge source="com.ifood.test.service.impl.WeatherServiceImpl" target="com.ifood.test.dto.Place">
+      <point x="0.0" y="-48.5" />
+      <point x="1119.25" y="594.0" />
+      <point x="1144.9283333333333" y="594.0" />
+      <point x="1144.9283333333333" y="416.0" />
+      <point x="1096.7966666666666" y="416.0" />
+      <point x="68.0" y="81.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6300904977375565" x="656.5" y="396.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
