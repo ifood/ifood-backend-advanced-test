@@ -24,7 +24,7 @@ Also, make it easy to deploy/run your service(s) locally (consider using some co
 ________________________________________________________________________________________________________________________
 
 
-#Solution
+# Solution
 The work tools that were used are the following:
 
 
@@ -40,7 +40,7 @@ The class diagram used to resolve the problem is shown below.
 ![images](IFood.jpg)
 
 
-###Start the application
+### Start the application
 
 First you must compile the project with Maven as follows:
 
@@ -57,7 +57,7 @@ java -jar test-0.0.1-SNAPSHOT.jar
 
 
 
-###The API contains two Get-type Rest Services
+### The API contains two Get-type Rest Services
 
 
 * The first API is to put any place you want and with respect to the place will suggest with respect to the temperature a 
