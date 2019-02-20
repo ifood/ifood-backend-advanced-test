@@ -41,6 +41,11 @@
 			<artifactId>springfox-swagger2</artifactId>
 			<version>2.2.2</version>
 		</dependency>
+		<dependency>
+			<groupId>se.michaelthelin.spotify</groupId>
+			<artifactId>spotify-web-api-java</artifactId>
+			<version>2.1.2</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>

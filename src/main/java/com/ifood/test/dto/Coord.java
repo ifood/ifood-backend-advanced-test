@@ -6,11 +6,11 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class Coordenadas implements Serializable {
+public class Coord implements Serializable {
 
     @JsonProperty("lon")
-    private Double longitud;
+    private Double longitude;
     @JsonProperty("lat")
-    private Double latitud;
+    private Double latitude;
 
 }

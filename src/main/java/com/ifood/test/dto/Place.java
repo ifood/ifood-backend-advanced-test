@@ -6,10 +6,10 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class Lugar implements Serializable {
+public class Place implements Serializable {
     @JsonProperty("coord")
-    private Coordenadas cordenadas;
+    private Coord coord;
     @JsonProperty("main")
-    private Clima clima;
+    private Weather weather;
 
 }
