@@ -1,0 +1,8 @@
+{
+    "name": "Api Teste iFood",
+    "version": "0.0.1",
+    "description": "Api teste ifood",
+    "template": {
+        "forceLanguage": "en"
+    }
+}
