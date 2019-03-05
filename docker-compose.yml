@@ -1,0 +1,30 @@
+version: '2'
+services:
+    config-server:
+        container_name: sindelantal-hystrix
+        build:
+            context: .
+            dockerfile: Dockerfile.hystrix
+        image: sindelantal-hystrix:latest
+        ports:
+            - 8091:8091
+        expose:
+            - 8091
+        networks:
+            - consumer-producer
+    config-client:
+        container_name: sindelantal-server
+        build:
+            context: .
+            dockerfile: Dockerfile.server
+        image: sindelantal-server:latest
+        ports:
+            - 8090:8090
+        networks:
+            - consumer-producer
+        depends_on:
+            - config-server
+networks:
+    consumer-producer:
+        external: true
+        

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: SinDelantal-Hystrix
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Eduardo Cruz Zamorano
+Implementation-Vendor-Id: mx.sindelantal.hyxtrix
+Build-Jdk: 1.8.0_201
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/SinDelantal-Hystrix
+Created-By: Maven Integration for Eclipse
+
