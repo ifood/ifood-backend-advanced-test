@@ -1,12 +1,11 @@
 HELP.md
 /target/
-/target/classes/
-*.class
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
 .apt_generated
 .classpath
+.class
 .factorypath
 .project
 .settings
