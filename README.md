@@ -21,7 +21,7 @@ Bring up the application by running following maven command from the project fol
 
 Once application has started, open Postman or another tool to send
 
-###Find track list by your city name
+### Find track list by your city name
 http://localhost:8091/city/{cityName}
 
 Example
@@ -71,13 +71,13 @@ response a default track.
 
 >docker-compose.yml
 
-###Note
+### Note
 
 The project has two jars the principal "Sindelantal-Hystrix" and "SinDelantal", the second one is in the folder
 target/ , in the diagram is the "SinDelantal API" you need to run booth projects to see all the functionality
 Any question please let me know.
 
-###Docher hub image
+### Docher hub image
    
 Sindelantal-Hystrix
 >https://cloud.docker.com/repository/registry-1.docker.io/laliento/sindelantalhystrix
@@ -85,7 +85,7 @@ Sindelantal-Hystrix
 Sindelantal
 >https://cloud.docker.com/repository/registry-1.docker.io/laliento/sindelantalserver
 
-##Original branch
+## Original branch
 
 Sindelantal-Hystrix
 >https://github.com/laliento/SinDelantal-Hystrix/tree/master2
