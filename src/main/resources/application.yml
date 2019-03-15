@@ -8,7 +8,11 @@ spotify:
   accessTokenUri: https://accounts.spotify.com/api/token
   username: a68aa3bea6274612b87386d9cd00a007
   password: 1b17a298358744fc9e53c7720dcc145d
+  api:
+    url: https://api.spotify.com/v1
 
 openweathermap:
   app:
     id: c41fda64c5a62c6a6e0d04876e227a13
+  api:
+    url: https://api.openweathermap.org/data/2.5

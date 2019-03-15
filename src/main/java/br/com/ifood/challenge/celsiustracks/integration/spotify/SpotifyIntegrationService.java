@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * @see "https://developer.spotify.com/documentation/web-api/reference/browse/"
  */
-@FeignClient(name = "spotify", url = "https://api.spotify.com/v1")
+@FeignClient(name = "spotify-integration", url = "${spotify.api.url}")
 public interface SpotifyIntegrationService {
     @GetMapping(value = "/browse/categories", produces = MediaType.APPLICATION_JSON_VALUE)
     CategoriesResource getCategories(@RequestParam(value = "offset", defaultValue = "0")final Integer offset,
