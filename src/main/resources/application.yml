@@ -4,6 +4,19 @@ info:
     description: iFood Backend Challenge - application to retrieve tracks lists based on the weather
     version: 1.0.0-snapshot
 
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000 #o valor default eh 1000(1s), mas a API do OpenWeather eh meio lenta e estava caindo toda hora no fallback
+#            timeoutInMilliseconds: 1 #para teste do fallback (se a API nao responder em 1 milissegundo, cai no fallback)
+
 spotify:
   accessTokenUri: https://accounts.spotify.com/api/token
   username: a68aa3bea6274612b87386d9cd00a007

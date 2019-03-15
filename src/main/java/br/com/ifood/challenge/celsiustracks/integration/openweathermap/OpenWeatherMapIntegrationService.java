@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * @see "https://openweathermap.org/current"
  */
-@FeignClient(name = "openweathermap-integration", url = "${openweathermap.api.url}")
+@FeignClient(name = "openweathermap-integration", url = "${openweathermap.api.url}",
+        fallback = OpenWeatherMapIntegrationFallbackServiceImpl.class)
 public interface OpenWeatherMapIntegrationService {
     //@Cacheable (cachear o resultado por um tempo)
     @GetMapping(value = "/weather?units=metric", produces = MediaType.APPLICATION_JSON_VALUE)
