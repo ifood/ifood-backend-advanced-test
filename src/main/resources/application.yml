@@ -1,0 +1,14 @@
+info:
+  app:
+    name: Celsius Tracks
+    description: iFood Backend Challenge - application to retrieve tracks lists based on the weather
+    version: 1.0.0-snapshot
+
+spotify:
+  accessTokenUri: https://accounts.spotify.com/api/token
+  username: a68aa3bea6274612b87386d9cd00a007
+  password: 1b17a298358744fc9e53c7720dcc145d
+
+openweathermap:
+  app:
+    id: c41fda64c5a62c6a6e0d04876e227a13
