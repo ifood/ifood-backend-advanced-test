@@ -11,19 +11,19 @@ import org.springframework.stereotype.Service;
 public class SpotifyIntegrationFallbackServiceImpl implements SpotifyIntegrationService {
 
     @Override
-    public CategoriesResource getCategories(final Integer offset, final Integer limit) {
+    public CategoriesResource getCategories(final Long offset, final Integer limit) {
         log.warn("Fallback for SpotifyIntegration.getCategories");
         return new CategoriesResource(); //TODO implementar fallback
     }
 
     @Override
-    public PlaylistsResource getPlaylistsByCategory(final String categoryId, final Integer offset, final Integer limit) {
+    public PlaylistsResource getPlaylistsByCategory(final String categoryId, final Long offset, final Integer limit) {
         log.warn("Fallback for SpotifyIntegration.getPlaylistsByCategory");
         return new PlaylistsResource();  //TODO implementar fallback
     }
 
     @Override
-    public TracksResource getTracksByPlaylist(final String playlistId, final Integer offset, final Integer limit) {
+    public TracksResource getTracksByPlaylist(final String playlistId, final Long offset, final Integer limit) {
         log.warn("Fallback for SpotifyIntegration.getTracksByPlaylist");
         return new TracksResource();  //TODO implementar fallback
     }

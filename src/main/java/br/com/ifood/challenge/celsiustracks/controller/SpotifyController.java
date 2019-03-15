@@ -18,7 +18,7 @@ public class SpotifyController {
 
 	@GetMapping(value = "/categories")
 	public ResponseEntity<?> getCategories(
-			@RequestParam(value = "offset", defaultValue = "0")final Integer offset,
+			@RequestParam(value = "offset", defaultValue = "0")final Long offset,
 			@RequestParam(value = "limit", defaultValue = "10")final Integer limit) {
 		final CategoriesResource categoriesResource = spotifyIntegrationService.getCategories(offset, limit);
 		return ResponseEntity.ok(categoriesResource);
@@ -26,7 +26,7 @@ public class SpotifyController {
 
 	@GetMapping(value = "/categories/{category_id}/playlists")
 	public ResponseEntity<?> getPlaylistsByCategory(@PathVariable("category_id") final String categoryId,
-			@RequestParam(value = "offset", defaultValue = "0")final Integer offset,
+			@RequestParam(value = "offset", defaultValue = "0")final Long offset,
 			@RequestParam(value = "limit", defaultValue = "10")final Integer limit) {
 		final PlaylistsResource playlistsResource = spotifyIntegrationService.getPlaylistsByCategory(categoryId, offset, limit);
 		return ResponseEntity.ok(playlistsResource);
@@ -34,7 +34,7 @@ public class SpotifyController {
 
 	@GetMapping(value = "/playlists/{playlist_id}/tracks")
 	public ResponseEntity<?> getTracksByPlaylist(@PathVariable("playlist_id") final String playlistId,
-			@RequestParam(value = "offset", defaultValue = "0")final Integer offset,
+			@RequestParam(value = "offset", defaultValue = "0")final Long offset,
 			@RequestParam(value = "limit", defaultValue = "10")final Integer limit) {
 		final TracksResource tracksResource = spotifyIntegrationService.getTracksByPlaylist(playlistId, offset, limit);
 		return ResponseEntity.ok(tracksResource);

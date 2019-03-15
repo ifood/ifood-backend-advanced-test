@@ -45,5 +45,8 @@ public class WeatherResource {
     @JsonProperty("cod")
     public Integer cod;
 
+    public Double getCurrentTemperature() {
+        return main.getTemp();
+    }
 }
 
