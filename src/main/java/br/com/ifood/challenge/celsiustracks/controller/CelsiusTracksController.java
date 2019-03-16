@@ -19,7 +19,7 @@ public class CelsiusTracksController {
     public ResponseEntity<CelsiusTracksResource> getTracksByCity(@PathVariable("cityName") final String cityName,
                                                                  @RequestParam(value = "offset", defaultValue = "0") final Integer pageNumber,
                                                                  @RequestParam(value = "limit", defaultValue = "1") final Integer limit) {
-        //TODO substituir o construtor por um assembler
+        //TODO substituir o construtor por um assembler (vide PagedResourcesAssembler)
         final CelsiusTracksResource celsiusTracksResource = new CelsiusTracksResource(celsiusTracksService.getTracksByCity(cityName, PageRequest.of(pageNumber, limit)));
         return ResponseEntity.ok(celsiusTracksResource);
     }
@@ -29,7 +29,7 @@ public class CelsiusTracksController {
                                                                         @PathVariable("longitude") Double longitude,
                                                                         @RequestParam(value = "pageNumber", defaultValue = "0") final Integer pageNumber,
                                                                         @RequestParam(value = "limit", defaultValue = "1") final Integer limit) {
-        //TODO substituir o construtor por um assembler
+        //TODO substituir o construtor por um assembler (vide PagedResourcesAssembler)
         final CelsiusTracksResource celsiusTracksResource = new CelsiusTracksResource(celsiusTracksService.getTracksByCoordinates(latitude, longitude, PageRequest.of(pageNumber, limit)));
         return ResponseEntity.ok(celsiusTracksResource);
     }
