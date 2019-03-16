@@ -1,14 +1,15 @@
 package br.com.ifood.challenge.celsiustracks.entity;
 
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "PLAYLIST_CATEGORIES")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PlaylistCategoryEntity {
 
     @Id

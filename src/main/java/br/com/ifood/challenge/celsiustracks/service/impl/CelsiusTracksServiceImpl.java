@@ -6,9 +6,10 @@ import br.com.ifood.challenge.celsiustracks.domain.openweathermap.WeatherResourc
 import br.com.ifood.challenge.celsiustracks.integration.openweathermap.OpenWeatherMapIntegrationService;
 import br.com.ifood.challenge.celsiustracks.property.OpenWeatherMapProperties;
 import br.com.ifood.challenge.celsiustracks.service.CelsiusTracksService;
-import br.com.ifood.challenge.celsiustracks.service.FinderPlaylistCategoryByTemperatureService;
 import br.com.ifood.challenge.celsiustracks.service.FinderPlaylistByCategory;
+import br.com.ifood.challenge.celsiustracks.service.FinderPlaylistCategoryByTemperatureService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@EnableConfigurationProperties(OpenWeatherMapProperties.class)
 public class CelsiusTracksServiceImpl implements CelsiusTracksService {
 
     private final OpenWeatherMapProperties openWeatherMapProperties;

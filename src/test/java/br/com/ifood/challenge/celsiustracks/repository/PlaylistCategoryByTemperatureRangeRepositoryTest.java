@@ -13,8 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Arrays;
 import java.util.List;
 
-@DataJpaTest
 @RunWith(SpringRunner.class)
+@DataJpaTest
 public class PlaylistCategoryByTemperatureRangeRepositoryTest {
 
     @Autowired
