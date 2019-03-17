@@ -9,12 +9,7 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "coord",
-        "sys",
         "weather",
-        "main",
-        "wind",
-        "rain",
-        "clouds",
         "dt",
         "id",
         "name",
@@ -23,30 +18,26 @@ import lombok.Data;
 public class WeatherResource {
 
     @JsonProperty("coord")
-    public Coordinates coord;
-//    @JsonProperty("sys")
-//    public Sys sys;
-//    @JsonProperty("weather")
-//    public List<Weather> weather = null;
-    @JsonProperty("main")
-    public Weather main;
-//    @JsonProperty("wind")
-//    public Wind wind;
-//    @JsonProperty("rain")
-//    public Rain rain;
-//    @JsonProperty("clouds")
-//    public Clouds clouds;
+    private Coordinates coord;
+    @JsonProperty("weather")
+    private Weather weather;
     @JsonProperty("dt")
-    public Integer dataCalculationTime;
+    private Integer dataCalculationTime;
     @JsonProperty("id")
-    public Integer id;
+    private Integer id;
     @JsonProperty("name")
-    public String name;
+    private String name;
     @JsonProperty("cod")
-    public Integer cod;
+    private Integer cod;
+
+    public static WeatherResource ofFallback() {
+        final WeatherResource fallbackWeather = new WeatherResource();
+        fallbackWeather.weather = Weather.ofFallback();
+        return fallbackWeather;
+    }
 
     public Double getCurrentTemperature() {
-        return main.getTemp();
+        return weather.getTemp();
     }
 }
 

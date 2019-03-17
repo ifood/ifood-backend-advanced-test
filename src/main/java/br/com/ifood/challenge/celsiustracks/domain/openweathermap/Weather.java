@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 
+import java.util.Random;
+
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -17,14 +19,19 @@ import lombok.Data;
 public class Weather {
 
     @JsonProperty("temp")
-    public Double temp;
+    private Double temp;
     @JsonProperty("humidity")
     public Double humidity;
     @JsonProperty("pressure")
-    public Double pressure;
+    private Double pressure;
     @JsonProperty("temp_min")
-    public Double tempMin;
+    private Double tempMin;
     @JsonProperty("temp_max")
-    public Double tempMax;
+    private Double tempMax;
 
+    public static Weather ofFallback() {
+        final Weather fallbackWeather = new Weather();
+        fallbackWeather.temp = Double.valueOf(new Random().nextInt(40));
+        return fallbackWeather;
+    }
 }

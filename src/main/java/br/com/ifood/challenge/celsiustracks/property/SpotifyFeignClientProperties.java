@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Data
-@ConfigurationProperties("spotify")
+@ConfigurationProperties(prefix = "spotify")
 public class SpotifyFeignClientProperties {
     private String accessTokenUri;
     private String username;

@@ -28,4 +28,7 @@ public class TrackItem {
 //    @JsonProperty("video_thumbnail")
 //    public VideoThumbnail videoThumbnail;
 
+    public String getTrackName() {
+        return track.getName();
+    }
 }

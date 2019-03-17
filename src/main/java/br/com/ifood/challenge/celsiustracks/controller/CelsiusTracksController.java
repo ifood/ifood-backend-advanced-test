@@ -1,5 +1,6 @@
 package br.com.ifood.challenge.celsiustracks.controller;
 
+import br.com.ifood.challenge.celsiustracks.domain.celsiustracks.CelsiusPlaylist;
 import br.com.ifood.challenge.celsiustracks.domain.celsiustracks.CelsiusTracksResource;
 import br.com.ifood.challenge.celsiustracks.service.CelsiusTracksService;
 import lombok.RequiredArgsConstructor;
@@ -17,10 +18,10 @@ public class CelsiusTracksController {
 
     @GetMapping(value = "/cities/{cityName}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CelsiusTracksResource> getTracksByCity(@PathVariable("cityName") final String cityName,
-                                                                 @RequestParam(value = "offset", defaultValue = "0") final Integer pageNumber,
-                                                                 @RequestParam(value = "limit", defaultValue = "1") final Integer limit) {
-        //TODO substituir o construtor por um assembler (vide PagedResourcesAssembler)
-        final CelsiusTracksResource celsiusTracksResource = new CelsiusTracksResource(celsiusTracksService.getTracksByCity(cityName, PageRequest.of(pageNumber, limit)));
+                                                                 @RequestParam(value = "pageNumber", defaultValue = "0") final Integer pageNumber,
+                                                                 @RequestParam(value = "limit", defaultValue = "10") final Integer limit) {
+        final CelsiusPlaylist celsiusPlaylist = celsiusTracksService.getTracksByCity(cityName, PageRequest.of(pageNumber, limit));
+        final CelsiusTracksResource celsiusTracksResource = new CelsiusTracksResource(celsiusPlaylist);
         return ResponseEntity.ok(celsiusTracksResource);
     }
 
@@ -29,8 +30,8 @@ public class CelsiusTracksController {
                                                                         @PathVariable("longitude") Double longitude,
                                                                         @RequestParam(value = "pageNumber", defaultValue = "0") final Integer pageNumber,
                                                                         @RequestParam(value = "limit", defaultValue = "1") final Integer limit) {
-        //TODO substituir o construtor por um assembler (vide PagedResourcesAssembler)
-        final CelsiusTracksResource celsiusTracksResource = new CelsiusTracksResource(celsiusTracksService.getTracksByCoordinates(latitude, longitude, PageRequest.of(pageNumber, limit)));
+        final CelsiusPlaylist celsiusPlaylist = celsiusTracksService.getTracksByCoordinates(latitude, longitude, PageRequest.of(pageNumber, limit));
+        final CelsiusTracksResource celsiusTracksResource = new CelsiusTracksResource(celsiusPlaylist);
         return ResponseEntity.ok(celsiusTracksResource);
     }
 

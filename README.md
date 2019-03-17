@@ -20,3 +20,24 @@ As this service will be a worldwide success, it must be prepared to be fault tol
 Use whatever language, tools and frameworks you feel comfortable to, and briefly elaborate on your solution, architecture details, choice of patterns and frameworks.
 
 Also, make it easy to deploy/run your service(s) locally (consider using some container/vm solution for this). Once done, share your code with us.
+
+------------------------------------------------------------------------------------------------------------------------
+
+## Resolution Explanations
+The CelsiusTracks App retrieves a random playlist (only one) based on the category that is gotten through a pre-defined business rules.
+This business rules are configured at the database table. If it will be needed to change the rules, it is as easy as to update or insert data in the database (it is not needed to change the code).
+If there is no playlist for a category, a playlist fallback is retrieved.
+
+For test purpose, access http://localhost:8080/swagger-ui.html
+
+### Technologies/frameworks:
+Spring Boot - easy and fast to setup the application. It makes the development process easier and faster
+Spring Data - abstraction for ORM and repositories
+Spring Cloud (Feign, Hystrix) - makes the integration faster to developer and reliable with fallback implementations
+Swagger - API documentation 
+Redis - to cache the results for a predefined amount of time to minimize the throughput at the Spotify and OpenWeatherMap APIs
+Docker - to setup the infrastructure - runs the application database and redis for cache
+
+## Possible Next Steps
+- Add newRelic for monitoring app
+- Implement Hateoas if needs

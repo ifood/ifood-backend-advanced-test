@@ -6,7 +6,8 @@ info:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/celsiustracks
+#    url: jdbc:postgresql://localhost:5432/celsiustracks
+    url: jdbc:postgresql://192.168.1.43:5432/celsiustracks
     username: postgres
     password: secretpwd
   jpa:
@@ -40,7 +41,7 @@ spotify:
     url: https://api.spotify.com/v1
 
 openweathermap:
-  app:
-    id: c41fda64c5a62c6a6e0d04876e227a13
+#  appId: c41fda64c5a62c6a6e0d04876e227a13
+  appId: fallback
   api:
     url: https://api.openweathermap.org/data/2.5

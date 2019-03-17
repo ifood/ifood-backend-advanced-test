@@ -15,7 +15,7 @@ import static java.lang.String.join;
 @RequiredArgsConstructor
 public class OpenWeatherMapController {
 
-	@Value("${openweathermap.app.id}")
+	@Value("${openweathermap.appId}")
 	private String appId;
 
 	private final OpenWeatherMapIntegrationService openWeatherMapIntegrationService;

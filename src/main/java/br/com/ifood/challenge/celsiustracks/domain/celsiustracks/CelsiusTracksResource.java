@@ -1,9 +1,12 @@
 package br.com.ifood.challenge.celsiustracks.domain.celsiustracks;
 
-import java.util.List;
+import lombok.Getter;
 
+@Getter
 public class CelsiusTracksResource {
-    public CelsiusTracksResource(final List<CelsiusPlaylist> celsiusPlaylist) {
-        //TODO será modificado para um Resource Hateoas
+    private CelsiusPlaylist playlist;
+
+    public CelsiusTracksResource(final CelsiusPlaylist playlist) {
+        this.playlist = playlist;
     }
 }

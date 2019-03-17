@@ -26,20 +26,20 @@ public class CelsiusTracksServiceImpl implements CelsiusTracksService {
     private final FinderPlaylistByCategory finderPlaylistByCategory;
 
     @Override
-    public List<CelsiusPlaylist> getTracksByCity(final String cityName, final Pageable page) {
+    public CelsiusPlaylist getTracksByCity(final String cityName, final Pageable page) {
         final String appId = openWeatherMapProperties.getAppId();
         final WeatherResource weather = openWeatherMapIntegrationService.getWeatherByCity(cityName, appId);
         return findCelsiusTracksByCategory(weather, page);
     }
 
     @Override
-    public List<CelsiusPlaylist> getTracksByCoordinates(final Double latitude, final Double longitude, final Pageable page) {
+    public CelsiusPlaylist getTracksByCoordinates(final Double latitude, final Double longitude, final Pageable page) {
         final String appId = openWeatherMapProperties.getAppId();
         final WeatherResource weather = openWeatherMapIntegrationService.getWeatherByCoordinates(latitude, longitude, appId);
         return findCelsiusTracksByCategory(weather, page);
     }
 
-    private List<CelsiusPlaylist> findCelsiusTracksByCategory(final WeatherResource weather, final Pageable page) {
+    private CelsiusPlaylist findCelsiusTracksByCategory(final WeatherResource weather, final Pageable page) {
         final PlaylistCategory playlistCategory = finderPlaylistCategoryByTemperatureService.find(weather.getCurrentTemperature());
         return finderPlaylistByCategory.find(playlistCategory, page);
     }

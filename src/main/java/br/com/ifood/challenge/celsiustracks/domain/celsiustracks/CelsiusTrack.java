@@ -5,7 +5,6 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class PlaylistCategory {
-    private Long id;
+public class CelsiusTrack {
     private String name;
 }

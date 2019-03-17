@@ -1,5 +1,6 @@
 package br.com.ifood.challenge.celsiustracks.entity;
 
+import br.com.ifood.challenge.celsiustracks.domain.celsiustracks.PlaylistCategory;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +23,9 @@ public class PlaylistCategoryEntity {
 
     public PlaylistCategoryEntity(final String name) {
         this.name = name;
+    }
+
+    public PlaylistCategory toDomain() {
+        return new PlaylistCategory(id, name);
     }
 }
