@@ -31,7 +31,6 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 10000 #o valor default eh 1000(1s), mas a API do OpenWeather eh meio lenta e estava caindo toda hora no fallback
-#            timeoutInMilliseconds: 1 #para teste do fallback (se a API nao responder em 1 milissegundo, cai no fallback)
 
 spotify:
   accessTokenUri: https://accounts.spotify.com/api/token
@@ -41,7 +40,6 @@ spotify:
     url: https://api.spotify.com/v1
 
 openweathermap:
-#  appId: c41fda64c5a62c6a6e0d04876e227a13
-  appId: fallback
+  appId: c41fda64c5a62c6a6e0d04876e227a13
   api:
     url: https://api.openweathermap.org/data/2.5

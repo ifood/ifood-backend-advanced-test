@@ -9,12 +9,12 @@ import br.com.ifood.challenge.celsiustracks.service.CelsiusTracksService;
 import br.com.ifood.challenge.celsiustracks.service.FinderPlaylistByCategory;
 import br.com.ifood.challenge.celsiustracks.service.FinderPlaylistCategoryByTemperatureService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @EnableConfigurationProperties(OpenWeatherMapProperties.class)
@@ -40,7 +40,10 @@ public class CelsiusTracksServiceImpl implements CelsiusTracksService {
     }
 
     private CelsiusPlaylist findCelsiusTracksByCategory(final WeatherResource weather, final Pageable page) {
+        log.info("Current temperature: {} C", weather.getCurrentTemperature());
         final PlaylistCategory playlistCategory = finderPlaylistCategoryByTemperatureService.find(weather.getCurrentTemperature());
+        log.info("Category: {}", playlistCategory.getName());
+
         return finderPlaylistByCategory.find(playlistCategory, page);
     }
 
