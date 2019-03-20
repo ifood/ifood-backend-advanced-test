@@ -37,8 +37,8 @@ public class FinderPlaylistByCategoryImpl implements FinderPlaylistByCategory {
     @HystrixCommand(fallbackMethod = "getFallbackCelsiusPlaylist")
     public CelsiusPlaylist find(final PlaylistCategory playlistCategory, final Pageable page) {
         final Integer numberOfPlaylists = getMaxNumberOfPlaylistByCategory(playlistCategory);
-
         final long offset = new Random().nextInt(numberOfPlaylists);
+
         final PlaylistsResource playlistByCategory = spotifyIntegrationService.getPlaylistsByCategory(playlistCategory.getName(), offset, LIMIT);
 
         final List<PlaylistItem> playlists = playlistByCategory.getPlaylists().getItems();
@@ -53,10 +53,17 @@ public class FinderPlaylistByCategoryImpl implements FinderPlaylistByCategory {
     }
 
     private Integer getMaxNumberOfPlaylistByCategory(final PlaylistCategory playlistCategory) {
-        final PlaylistsResource playlistsByCategory = spotifyIntegrationService.getPlaylistsByCategory(playlistCategory.getName(), OFFSET, LIMIT);
-        return ofNullable(playlistsByCategory)
-                .map(PlaylistsResource::getTotalPlaylists)
-                .orElseThrow(PlaylistNotFoundException::new);
+        final PlaylistsResource playlistsByCategory =
+                spotifyIntegrationService.getPlaylistsByCategory(playlistCategory.getName(), OFFSET, LIMIT);
+
+        final Integer maxNumberOfPlaylist =
+                ofNullable(playlistsByCategory).map(PlaylistsResource::getTotalPlaylists).orElse(0);
+
+        if (maxNumberOfPlaylist == 0) {
+            throw new PlaylistNotFoundException();
+        }
+
+        return maxNumberOfPlaylist;
     }
 
     private List<CelsiusTrack> findAndConvertToCelsiusPlaylist(final String playlistId, final Pageable page) {

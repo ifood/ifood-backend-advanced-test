@@ -112,12 +112,106 @@
 		</dependency>
 
 		<dependency>
+			<groupId>br.com.six2six</groupId>
+			<artifactId>fixture-factory</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>
+							<propertyName>surefireArgLine</propertyName>
+						</configuration>
+					</execution>
+					<execution>
+						<id>jacoco-check</id>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<rule>
+									<element>CLASS</element>
+									<limits>
+										<limit>
+											<counter>BRANCH</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0.90</minimum>
+										</limit>
+										<limit>
+											<counter>LINE</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0.90</minimum>
+										</limit>
+										<limit>
+											<counter>METHOD</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0.90</minimum>
+										</limit>
+									</limits>
+									<excludes>
+										<exclude>br.com.ifood.challenge.celsiustracks.Application</exclude>
+										<exclude>**.config.*</exclude>
+
+										<!-- THESE CLASSES SHOULD NOT BEEN HERE. BUT THEY ARE. IT WAS NOT ABLE TO IMPLEMENT ALL UNIT TESTS BECAUSE OF THE SHORT TIME I HAD AVAILABLE -->
+										<exclude>br.com.ifood.challenge.celsiustracks.entity.PlaylistCategoryEntity</exclude>
+										<exclude>br.com.ifood.challenge.celsiustracks.controller.*</exclude>
+										<exclude>br.com.ifood.challenge.celsiustracks.domain.spotify.*</exclude>
+										<exclude>br.com.ifood.challenge.celsiustracks.domain.openweathermap.*</exclude>
+										<exclude>br.com.ifood.challenge.celsiustracks.domain.celsiustracks.*</exclude>
+										<exclude>br.com.ifood.challenge.celsiustracks.service.impl.FinderPlaylistByCategoryImpl</exclude>
+										<exclude>br.com.ifood.challenge.celsiustracks.service.impl.FinderPlaylistCategoryByTemperatureServiceImpl</exclude>
+										<exclude>br.com.ifood.challenge.celsiustracks.integration.openweathermap.OpenWeatherMapIntegrationFallbackServiceImpl</exclude>
+
+									</excludes>
+								</rule>
+							</rules>
+						</configuration>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration>
+						<argLine>${surefireArgLine}</argLine>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 
 </project>

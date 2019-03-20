@@ -13,19 +13,19 @@ public class SpotifyIntegrationFallbackServiceImpl implements SpotifyIntegration
     @Override
     public CategoriesResource getCategories(final Long offset, final Integer limit) {
         log.warn("Fallback for SpotifyIntegration.getCategories");
-        return new CategoriesResource(); //TODO implementar fallback
+        return new CategoriesResource(); //TODO improve fallback
     }
 
     @Override
     public PlaylistsResource getPlaylistsByCategory(final String categoryId, final Long offset, final Integer limit) {
         log.warn("Fallback for SpotifyIntegration.getPlaylistsByCategory");
-        return new PlaylistsResource();  //TODO implementar fallback
+        return new PlaylistsResource();  //TODO improve fallback
     }
 
     @Override
     public TracksResource getTracksByPlaylist(final String playlistId, final Long offset, final Integer limit) {
         log.warn("Fallback for SpotifyIntegration.getTracksByPlaylist");
-        return new TracksResource();  //TODO implementar fallback
+        return new TracksResource();  //TODO improve fallback
     }
 
 }

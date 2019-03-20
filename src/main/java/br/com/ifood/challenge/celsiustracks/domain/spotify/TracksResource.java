@@ -1,10 +1,11 @@
 package br.com.ifood.challenge.celsiustracks.domain.spotify;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
+
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -20,18 +21,18 @@ import lombok.Data;
 public class TracksResource {
 
     @JsonProperty("href")
-    public String href;
+    private String href;
     @JsonProperty("items")
-    public List<TrackItem> items = null;
+    private List<TrackItem> items = null;
     @JsonProperty("limit")
-    public Integer limit;
+    private Integer limit;
     @JsonProperty("next")
-    public String next;
+    private String next;
     @JsonProperty("offset")
-    public Integer offset;
+    private Integer offset;
     @JsonProperty("previous")
-    public String previous;
+    private String previous;
     @JsonProperty("total")
-    public Integer total;
+    private Integer total;
 
 }

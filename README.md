@@ -23,6 +23,12 @@ Also, make it easy to deploy/run your service(s) locally (consider using some co
 
 ------------------------------------------------------------------------------------------------------------------------
 
+## Instruction to run the app
+1. Start docker container to run the database:
+    docker run --name postgresDB -e POSTGRES_PASSWORD=secretpwd -e POSTGRES_DB=celsiustracks -p 5432:5432 -d postgres
+2. Execute the scripts from "resources/sql"
+3. Start the Spring Boot Application: run Application.java
+
 ## Resolution Explanations
 The CelsiusTracks App retrieves a random playlist (only one) based on the category that is gotten through a pre-defined business rules.
 This business rules are configured at the database table. If it will be needed to change the rules, it is as easy as to update or insert data in the database (it is not needed to change the code).
@@ -30,14 +36,22 @@ If there is no playlist for a category, a playlist fallback is retrieved.
 
 For test purpose, access http://localhost:8080/swagger-ui.html
 
-### Technologies/frameworks:
+### Main Technologies/Frameworks:
 Spring Boot - easy and fast to setup the application. It makes the development process easier and faster
 Spring Data - abstraction for ORM and repositories
 Spring Cloud (Feign, Hystrix) - makes the integration faster to developer and reliable with fallback implementations
 Swagger - API documentation 
-Redis - to cache the results for a predefined amount of time to minimize the throughput at the Spotify and OpenWeatherMap APIs
-Docker - to setup the infrastructure - runs the application database and redis for cache
+Docker - to setup the infrastructure - runs the application database
+Postgres DB - Database to keep the category and category by temperature range datas
+Fixture Template - for test data generation (used in Unit Tests)
+Jacoco - for line coverage
+Lombok - to make the code cleaner and more readable.
 
 ## Possible Next Steps
+- Improve test coverage and add integration tests
+- Add Sonar for code quality
 - Add newRelic for monitoring app
-- Implement Hateoas if needs
+- Use Redis to cache the results for a predefined amount of time to minimize the throughput at the Spotify and OpenWeatherMap APIs
+- Improve fallback quality, for instance, use cache or database to keep some tracks searched recently. 
+There are other specific points to add fallback strategy.
+- Implement Hateoas (if needs)

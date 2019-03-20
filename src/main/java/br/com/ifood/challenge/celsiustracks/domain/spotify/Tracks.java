@@ -14,8 +14,8 @@ import lombok.Data;
 public class Tracks {
 
     @JsonProperty("href")
-    public String href;
+    private String href;
     @JsonProperty("total")
-    public Integer total;
+    private Integer total;
 
 }

@@ -25,19 +25,19 @@ import static java.util.stream.Collectors.toList;
 public class Playlists {
 
     @JsonProperty("href")
-    public String href;
+    private String href;
     @JsonProperty("items")
-    public List<PlaylistItem> items = null;
+    private List<PlaylistItem> items = null;
     @JsonProperty("limit")
-    public Integer limit;
+    private Integer limit;
     @JsonProperty("next")
-    public String next;
+    private String next;
     @JsonProperty("offset")
-    public Integer offset;
+    private Integer offset;
     @JsonProperty("previous")
-    public String previous;
+    private String previous;
     @JsonProperty("total")
-    public Integer total;
+    private Integer total = 0;
 
     public List<String> getPlaylistId() {
         return ofNullable(items).orElse(emptyList())

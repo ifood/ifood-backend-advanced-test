@@ -7,45 +7,24 @@ import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-//        "collaborative",
-//        "external_urls",
         "href",
         "id",
-//        "images",
         "name",
-        "owner",
-//        "public",
-        "snapshot_id",
         "tracks",
-        "type",
-        "uri"
+        "type"
 })
 @Data
 public class PlaylistItem {
 
-//    @JsonProperty("collaborative")
-//    public Boolean collaborative;
-//    @JsonProperty("external_urls")
-//    public ExternalUrls externalUrls;
     @JsonProperty("href")
-    public String href;
+    private String href;
     @JsonProperty("id")
-    public String id;
-//    @JsonProperty("images")
-//    public List<Image> images = null;
+    private String id;
     @JsonProperty("name")
-    public String name;
-    @JsonProperty("owner")
-    public Owner owner;
-//    @JsonProperty("public")
-//    public Object _public;
-    @JsonProperty("snapshot_id")
-    public String snapshotId;
+    private String name;
     @JsonProperty("tracks")
-    public Tracks tracks;
+    private Tracks tracks;
     @JsonProperty("type")
-    public String type;
-    @JsonProperty("uri")
-    public String uri;
+    private String type;
 
 }
