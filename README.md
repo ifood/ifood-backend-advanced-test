@@ -1,4 +1,4 @@
-# iFood Backend Advanced Test
+# Challenge Description
 
 Create a micro-service able to accept RESTful requests receiving as parameter either city name or lat long coordinates and returns a playlist (only track names is fine) suggestion according to the current temperature.
 
@@ -37,15 +37,15 @@ If there is no playlist for a category, a playlist fallback is retrieved.
 For test purpose, access http://localhost:8080/swagger-ui.html
 
 ### Main Technologies/Frameworks:
-Spring Boot - easy and fast to setup the application. It makes the development process easier and faster
-Spring Data - abstraction for ORM and repositories
-Spring Cloud (Feign, Hystrix) - makes the integration faster to developer and reliable with fallback implementations
-Swagger - API documentation 
-Docker - to setup the infrastructure - runs the application database
-Postgres DB - Database to keep the category and category by temperature range datas
-Fixture Template - for test data generation (used in Unit Tests)
-Jacoco - for line coverage
-Lombok - to make the code cleaner and more readable.
+- Spring Boot - easy and fast to setup the application. It makes the development process easier and faster
+- Spring Data - abstraction for ORM and repositories
+- Spring Cloud (Feign, Hystrix) - makes the integration faster to developer and reliable with fallback implementations
+- Swagger - API documentation 
+- Docker - to setup the infrastructure - runs the application database
+- Postgres DB - Database to keep the category and category by temperature range datas
+- Fixture Template - for test data generation (used in Unit Tests)
+- Jacoco - for line coverage
+- Lombok - to make the code cleaner and more readable.
 
 ## Possible Next Steps
 - Improve test coverage and add integration tests
