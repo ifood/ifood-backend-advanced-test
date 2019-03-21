@@ -184,6 +184,7 @@
 										<exclude>br.com.ifood.challenge.celsiustracks.service.impl.FinderPlaylistByCategoryImpl</exclude>
 										<exclude>br.com.ifood.challenge.celsiustracks.service.impl.FinderPlaylistCategoryByTemperatureServiceImpl</exclude>
 										<exclude>br.com.ifood.challenge.celsiustracks.integration.openweathermap.OpenWeatherMapIntegrationFallbackServiceImpl</exclude>
+										<exclude>br.com.ifood.challenge.celsiustracks.validator.CoordinateValidator</exclude>
 
 									</excludes>
 								</rule>

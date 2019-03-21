@@ -19,20 +19,14 @@ public class Album {
     @JsonProperty("href")
     private String href;
     @JsonProperty("id")
-    public String id;
-//    @JsonProperty("images")
-//    public List<Image> images = null;
+    private String id;
     @JsonProperty("name")
-    public String name;
-//    @JsonProperty("release_date")
-//    public String releaseDate;
-//    @JsonProperty("release_date_precision")
-//    public String releaseDatePrecision;
+    private String name;
     @JsonProperty("total_tracks")
-    public Integer totalTracks;
+    private Integer totalTracks;
     @JsonProperty("type")
-    public String type;
+    private String type;
     @JsonProperty("uri")
-    public String uri;
+    private String uri;
 
 }
