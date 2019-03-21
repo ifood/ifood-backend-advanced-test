@@ -54,4 +54,5 @@ Lombok - to make the code cleaner and more readable.
 - Use Redis to cache the results for a predefined amount of time to minimize the throughput at the Spotify and OpenWeatherMap APIs
 - Improve fallback quality, for instance, use cache or database to keep some tracks searched recently. 
 There are other specific points to add fallback strategy.
+- Improve implementation of invariants and validations
 - Implement Hateoas (if needs)

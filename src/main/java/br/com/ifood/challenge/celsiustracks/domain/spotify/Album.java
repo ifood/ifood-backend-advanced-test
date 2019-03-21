@@ -1,39 +1,23 @@
 package br.com.ifood.challenge.celsiustracks.domain.spotify;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.Data;
 
 import java.util.List;
 
+@Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "album_type",
-        "artists",
-        "available_markets",
-        "external_urls",
-        "href",
-        "id",
-        "images",
-        "name",
-        "release_date",
-        "release_date_precision",
-        "total_tracks",
-        "type",
-        "uri"
-})
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Album {
 
     @JsonProperty("album_type")
-    public String albumType;
+    private String albumType;
     @JsonProperty("artists")
-    public List<Artist> artists = null;
-//    @JsonProperty("available_markets")
-//    public List<Object> availableMarkets = null;
-//    @JsonProperty("external_urls")
-//    public ExternalUrls__ externalUrls;
+    private List<Artist> artists = null;
     @JsonProperty("href")
-    public String href;
+    private String href;
     @JsonProperty("id")
     public String id;
 //    @JsonProperty("images")
