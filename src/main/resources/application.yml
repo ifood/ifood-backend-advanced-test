@@ -1,0 +1,42 @@
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+
+logging:
+  level:
+    br.com.ariki.music.suggestion.by.weather: DEBUG
+    org.springframework.cache: TRACE
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation.thread.timeoutInMilliseconds: 5000
+
+#Custom
+openweathermap:
+  feign:
+    name: open-weather-map-api
+    url: https://api.openweathermap.org/data/2.5
+  error: Infelizmente não conseguimos realizar a consulta do clima no OpenWeather. Mesmo assim temos uma sugestao de nossos editores!
+  appid: 3d4aabd532def3666be6acb0e3086931
+  units: metric
+  
+spotify:
+  feign:
+    account:
+      name: spotify-account-api
+      url: https://accounts.spotify.com
+    api:
+      name: spotify-api
+      url: https://api.spotify.com/v1
+    playlist:
+      party-id: 37i9dQZF1DXaXB8fQg7xif
+      pop-id: 37i9dQZF1DWUa8ZRTfalHk
+      rock-id: 37i9dQZF1DX8FwnYE6PRvL
+      classical-id: 37i9dQZF1DWWEJlAGA9gs0
+  error: Infelizmente não conseguimos realizar a consulta da playlist no Spotify. Mesmo assim temos uma sugestao de nossos editores!
