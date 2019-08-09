@@ -1,0 +1,203 @@
+{
+  "tracks": {
+    "items": [
+      {
+        "track": {
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/2ziB7fzrXBoh1HUPS6sVFn"
+              },
+              "href": "https://api.spotify.com/v1/artists/2ziB7fzrXBoh1HUPS6sVFn",
+              "id": "2ziB7fzrXBoh1HUPS6sVFn",
+              "name": "Audioslave",
+              "type": "artist",
+              "uri": "spotify:artist:2ziB7fzrXBoh1HUPS6sVFn"
+            }
+          ],
+          "disc_number": 1,
+          "duration_ms": 222026,
+          "episode": false,
+          "explicit": false,
+          "external_ids": {
+            "isrc": "USSM10211584"
+          },
+          "external_urls": {
+            "spotify": "https://open.spotify.com/track/1TDk2Jmi4dVZhm2dum3Jim"
+          },
+          "href": "https://api.spotify.com/v1/tracks/1TDk2Jmi4dVZhm2dum3Jim",
+          "id": "1TDk2Jmi4dVZhm2dum3Jim",
+          "is_local": false,
+          "is_playable": true,
+          "name": "Cochise",
+          "popularity": 64,
+          "preview_url": "https://p.scdn.co/mp3-preview/8ed5bc735959bf3a147ce448ec84949af67631ad?cid=774b29d4f13844c495f206cafdad9c86",
+          "track": true,
+          "track_number": 1,
+          "type": "track",
+          "uri": "spotify:track:1TDk2Jmi4dVZhm2dum3Jim"
+        }
+      },
+      {
+        "track": {
+          "album": {
+            "album_type": "album",
+            "artists": [
+              {
+                "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/1w5Kfo2jwwIPruYS2UWh56"
+                },
+                "href": "https://api.spotify.com/v1/artists/1w5Kfo2jwwIPruYS2UWh56",
+                "id": "1w5Kfo2jwwIPruYS2UWh56",
+                "name": "Pearl Jam",
+                "type": "artist",
+                "uri": "spotify:artist:1w5Kfo2jwwIPruYS2UWh56"
+              }
+            ],
+            "external_urls": {
+              "spotify": "https://open.spotify.com/album/5B4PYA7wNN4WdEXdIJu58a"
+            },
+            "href": "https://api.spotify.com/v1/albums/5B4PYA7wNN4WdEXdIJu58a",
+            "id": "5B4PYA7wNN4WdEXdIJu58a",
+            "images": [
+              {
+                "height": 640,
+                "url": "https://i.scdn.co/image/425e1fef6d70a48a103dfd168a556b7f72f72865",
+                "width": 640
+              },
+              {
+                "height": 300,
+                "url": "https://i.scdn.co/image/23b5560068ee7324ee780841d0c20722ce9ecfde",
+                "width": 300
+              },
+              {
+                "height": 64,
+                "url": "https://i.scdn.co/image/c06b7ebaeb4c30631a9a3e448e7e16bda9aab8a8",
+                "width": 64
+              }
+            ],
+            "name": "Ten",
+            "release_date": "1991-08-27",
+            "release_date_precision": "day",
+            "total_tracks": 11,
+            "type": "album",
+            "uri": "spotify:album:5B4PYA7wNN4WdEXdIJu58a"
+          },
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/1w5Kfo2jwwIPruYS2UWh56"
+              },
+              "href": "https://api.spotify.com/v1/artists/1w5Kfo2jwwIPruYS2UWh56",
+              "id": "1w5Kfo2jwwIPruYS2UWh56",
+              "name": "Pearl Jam",
+              "type": "artist",
+              "uri": "spotify:artist:1w5Kfo2jwwIPruYS2UWh56"
+            }
+          ],
+          "disc_number": 1,
+          "duration_ms": 292580,
+          "episode": false,
+          "explicit": false,
+          "external_ids": {
+            "isrc": "USSM19100673"
+          },
+          "external_urls": {
+            "spotify": "https://open.spotify.com/track/6QewNVIDKdSl8Y3ycuHIei"
+          },
+          "href": "https://api.spotify.com/v1/tracks/6QewNVIDKdSl8Y3ycuHIei",
+          "id": "6QewNVIDKdSl8Y3ycuHIei",
+          "is_local": false,
+          "is_playable": true,
+          "name": "Even Flow",
+          "popularity": 72,
+          "preview_url": "https://p.scdn.co/mp3-preview/c3ea42310a641fd8febd51dc93c06f8f0876dfea?cid=774b29d4f13844c495f206cafdad9c86",
+          "track": true,
+          "track_number": 2,
+          "type": "track",
+          "uri": "spotify:track:6QewNVIDKdSl8Y3ycuHIei"
+        }
+      },
+      {
+        "track": {
+          "album": {
+            "album_type": "album",
+            "artists": [
+              {
+                "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/6GbCJZrI318Ybm8mY36Of5"
+                },
+                "href": "https://api.spotify.com/v1/artists/6GbCJZrI318Ybm8mY36Of5",
+                "id": "6GbCJZrI318Ybm8mY36Of5",
+                "name": "Faith No More",
+                "type": "artist",
+                "uri": "spotify:artist:6GbCJZrI318Ybm8mY36Of5"
+              }
+            ],
+            "external_urls": {
+              "spotify": "https://open.spotify.com/album/6LEP3L94jnkqjOxYJWPRP0"
+            },
+            "href": "https://api.spotify.com/v1/albums/6LEP3L94jnkqjOxYJWPRP0",
+            "id": "6LEP3L94jnkqjOxYJWPRP0",
+            "images": [
+              {
+                "height": 640,
+                "url": "https://i.scdn.co/image/a03d30844b7afa4d9b41999ed2c7f93ee44de33a",
+                "width": 640
+              },
+              {
+                "height": 300,
+                "url": "https://i.scdn.co/image/542a4495efb129c0dca086dc23b4ef500eeb2667",
+                "width": 300
+              },
+              {
+                "height": 64,
+                "url": "https://i.scdn.co/image/ac2be5c0334245b67f015b58f325ca03f7cd0b47",
+                "width": 64
+              }
+            ],
+            "name": "The Real Thing",
+            "release_date": "1989",
+            "release_date_precision": "year",
+            "total_tracks": 11,
+            "type": "album",
+            "uri": "spotify:album:6LEP3L94jnkqjOxYJWPRP0"
+          },
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/6GbCJZrI318Ybm8mY36Of5"
+              },
+              "href": "https://api.spotify.com/v1/artists/6GbCJZrI318Ybm8mY36Of5",
+              "id": "6GbCJZrI318Ybm8mY36Of5",
+              "name": "Faith No More",
+              "type": "artist",
+              "uri": "spotify:artist:6GbCJZrI318Ybm8mY36Of5"
+            }
+          ],
+          "disc_number": 1,
+          "duration_ms": 293653,
+          "episode": false,
+          "explicit": false,
+          "external_ids": {
+            "isrc": "GBANC8900003"
+          },
+          "external_urls": {
+            "spotify": "https://open.spotify.com/track/4ReyTz0y3TGkX48wO3Llot"
+          },
+          "href": "https://api.spotify.com/v1/tracks/4ReyTz0y3TGkX48wO3Llot",
+          "id": "4ReyTz0y3TGkX48wO3Llot",
+          "is_local": false,
+          "is_playable": true,
+          "name": "Epic",
+          "popularity": 65,
+          "preview_url": "https://p.scdn.co/mp3-preview/990d2a036460850226e2058f1dc9ad063e13dc61?cid=774b29d4f13844c495f206cafdad9c86",
+          "track": true,
+          "track_number": 2,
+          "type": "track",
+          "uri": "spotify:track:4ReyTz0y3TGkX48wO3Llot"
+        }
+      }
+    ]
+  }
+}
