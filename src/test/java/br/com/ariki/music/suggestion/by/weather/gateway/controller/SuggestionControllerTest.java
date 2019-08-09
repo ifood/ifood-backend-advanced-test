@@ -68,7 +68,7 @@ public class SuggestionControllerTest {
 	@Test
 	public void testGetSuggestionLonLatOk() {
 
-		when(orchestrator.executeByCityName(anyString())).thenReturn(Playlist.builder()
+		when(orchestrator.executeByLatLon(anyString(), anyString())).thenReturn(Playlist.builder()
 				.description("description")
 				.trackInfo(Stream.of(TrackInfo.builder()
 						.artistName("artistName")
@@ -93,7 +93,7 @@ public class SuggestionControllerTest {
 	@Test
 	public void testGetSuggestionLonLatNotOk() {
 
-		when(orchestrator.executeByCityName(anyString())).thenReturn(null);
+		when(orchestrator.executeByLatLon(anyString(), anyString())).thenReturn(null);
 		
 		ResponseEntity<PlaylistResponse> actual = controller.getSuggestion("10", "130");
 		ResponseEntity<PlaylistResponse> expected = ResponseEntity.noContent().build();
