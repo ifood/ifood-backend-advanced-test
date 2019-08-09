@@ -41,7 +41,7 @@ public class SuggestionControllerTest {
 						.build()).collect(Collectors.toList()))
 				.build());
 		
-		ResponseEntity<PlaylistResponse> actual = controller.getSuggestion("New York");
+		ResponseEntity<PlaylistResponse> actual = controller.getSuggestionByCity("New York");
 		ResponseEntity<PlaylistResponse> expected = ResponseEntity.ok(PlaylistResponse.builder()
 				.descricao("description")
 				.trackResponses(Stream.of(TrackInfoResponse.builder()
@@ -59,7 +59,7 @@ public class SuggestionControllerTest {
 
 		when(orchestrator.executeByCityName(anyString())).thenReturn(null);
 		
-		ResponseEntity<PlaylistResponse> actual = controller.getSuggestion("New York");
+		ResponseEntity<PlaylistResponse> actual = controller.getSuggestionByCity("New York");
 		ResponseEntity<PlaylistResponse> expected = ResponseEntity.noContent().build();
 		
 		assertEquals(expected, actual);
@@ -77,7 +77,7 @@ public class SuggestionControllerTest {
 						.build()).collect(Collectors.toList()))
 				.build());
 		
-		ResponseEntity<PlaylistResponse> actual = controller.getSuggestion("10", "130");
+		ResponseEntity<PlaylistResponse> actual = controller.getSuggestionByLonLat("10", "130");
 		ResponseEntity<PlaylistResponse> expected = ResponseEntity.ok(PlaylistResponse.builder()
 				.descricao("description")
 				.trackResponses(Stream.of(TrackInfoResponse.builder()
@@ -95,7 +95,7 @@ public class SuggestionControllerTest {
 
 		when(orchestrator.executeByLatLon(anyString(), anyString())).thenReturn(null);
 		
-		ResponseEntity<PlaylistResponse> actual = controller.getSuggestion("10", "130");
+		ResponseEntity<PlaylistResponse> actual = controller.getSuggestionByLonLat("10", "130");
 		ResponseEntity<PlaylistResponse> expected = ResponseEntity.noContent().build();
 		
 		assertEquals(expected, actual);

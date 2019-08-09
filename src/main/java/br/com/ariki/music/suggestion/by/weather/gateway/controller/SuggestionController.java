@@ -24,9 +24,9 @@ public class SuggestionController {
 	public SuggestionController(SuggestionPlaylistOrchestrator orchestrator) {
 		this.orchestrator = orchestrator;
 	}
-
-	@GetMapping(params = "q")
-	public ResponseEntity<PlaylistResponse> getSuggestion(@RequestParam(name = "q") String cityName ) {
+	
+	@GetMapping(path = "/bycity", params = "q")
+	public ResponseEntity<PlaylistResponse> getSuggestionByCity(@RequestParam(name = "q") String cityName ) {
 		log.debug("Init getSuggestion");
 		
 		Optional<Playlist> optional = Optional.ofNullable(orchestrator.executeByCityName(cityName));
@@ -35,8 +35,8 @@ public class SuggestionController {
 				.orElse(ResponseEntity.noContent().build());
 	}
 	
-	@GetMapping(params = {"lat", "lon"})
-	public ResponseEntity<PlaylistResponse> getSuggestion(
+	@GetMapping(path = "/bylatlon", params = {"lat", "lon"})
+	public ResponseEntity<PlaylistResponse> getSuggestionByLonLat(
 			@RequestParam(name = "lat") String lat, 
 			@RequestParam(name = "lon") String lon) {
 		
